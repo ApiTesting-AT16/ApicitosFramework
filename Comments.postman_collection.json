@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "eb8dd5c2-43f1-4c1b-8f08-01d767d9d238",
+		"name": "Comments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20339131"
+	},
+	"item": [
+		{
+			"name": "List Comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhbGV4IiwiaWF0IjoxNjU4MjE0NDg0LCJleHAiOjE4MTU4OTQ0ODR9.n7Osm26MIlwna9y9YT-ZtWXYgdSu8PlCChOdnMWCLiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/wp-json/wp/v2/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wp-json",
+						"wp",
+						"v2",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{site}}/wp-json/wp/v2/comments?post=2&content=This is a test comment&author_name=Carlos&author_email=carlos123@gmail.com",
+					"host": [
+						"{{site}}"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "post",
+							"value": "2"
+						},
+						{
+							"key": "content",
+							"value": "This is a test comment"
+						},
+						{
+							"key": "author_name",
+							"value": "Carlos"
+						},
+						{
+							"key": "author_email",
+							"value": "carlos123@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhbGV4IiwiaWF0IjoxNjU4MjE0NDg0LCJleHAiOjE4MTU4OTQ0ODR9.n7Osm26MIlwna9y9YT-ZtWXYgdSu8PlCChOdnMWCLiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/wp-json/wp/v2/comments/{{commentId}}?content={{content}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wp-json",
+						"wp",
+						"v2",
+						"comments",
+						"{{commentId}}"
+					],
+					"query": [
+						{
+							"key": "content",
+							"value": "{{content}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhbGV4IiwiaWF0IjoxNjU4MjE0NDg0LCJleHAiOjE4MTU4OTQ0ODR9.n7Osm26MIlwna9y9YT-ZtWXYgdSu8PlCChOdnMWCLiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/wp-json/wp/v2/comments/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wp-json",
+						"wp",
+						"v2",
+						"comments",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
