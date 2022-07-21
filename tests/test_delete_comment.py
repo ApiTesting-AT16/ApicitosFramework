@@ -11,13 +11,9 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 
 def test_read_posts():
 
-    response = requests.delete(URL+'wp-json/wp/v2/users/13?reassign=0&force=true')
-    print(response.json())
-    assert_that(response.status_code).is_equal_to(401)
-
     headers = {
         'Authorization': TOKEN
     }
-    response = requests.delete(URL+'wp-json/wp/v2/users/13?reassign=0&force=true', headers=headers)
+    response = requests.delete(URL+'wp-json/wp/v2/comments/6', headers=headers)
     pprint(response.json())
     assert_that(response.status_code).is_equal_to(200)

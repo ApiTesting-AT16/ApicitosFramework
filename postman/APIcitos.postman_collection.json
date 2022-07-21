@@ -1,0 +1,619 @@
+{
+	"info": {
+		"_postman_id": "4bbb4be8-8e66-4be2-9f7c-9bbcb2e0a27f",
+		"name": "APIcitos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/users",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Castro",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "alexander72577@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "Jala3",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/users?force=true",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "force",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload user",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Castro",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "alexander72577@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "Jala6",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "6",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/users/3",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/users/3?reassign=1&force=true&id=5",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"users",
+								"3"
+							],
+							"query": [
+								{
+									"key": "reassign",
+									"value": "1"
+								},
+								{
+									"key": "force",
+									"value": "true"
+								},
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "get comments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/comments",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "comment probed second time kjsciksjnvkjdnvkjcn ksjndkj dnvkjdnfkjndkfjvnkjdnvkjsdnvakjsndvkjasnvkjanvskjav final",
+									"type": "default"
+								},
+								{
+									"key": "author_name",
+									"value": "Ivan",
+									"type": "default"
+								},
+								{
+									"key": "author_email",
+									"value": "admin@root.com",
+									"type": "default"
+								},
+								{
+									"key": "post",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "status",
+									"value": "approved",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/comments",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Castro",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "alexander72577@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "Jala3",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/comments/{{commentId}}?content={{content}}",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments",
+								"{{commentId}}"
+							],
+							"query": [
+								{
+									"key": "content",
+									"value": "{{content}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/comments/3",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jwt_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Jala1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Ivan Lazo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Username",
+						"value": "Ivan Lazo",
+						"type": "default"
+					},
+					{
+						"key": "Password",
+						"value": "Jala1234",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "Ivan Lazo",
+							"type": "default"
+						},
+						{
+							"key": "Password",
+							"value": "Jala1234",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/apitest/wp-json/api/v1/token?mo_rest_api_test_config=jwt_auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apitest",
+						"wp-json",
+						"api",
+						"v1",
+						"token"
+					],
+					"query": [
+						{
+							"key": "mo_rest_api_test_config",
+							"value": "jwt_auth"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get jwt_token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Jala1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Ivan Lazo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Username",
+						"value": "Ivan Lazo",
+						"type": "default"
+					},
+					{
+						"key": "Password",
+						"value": "Jala1234",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "Ivan Lazo",
+							"type": "default"
+						},
+						{
+							"key": "Password",
+							"value": "Jala1234",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/apitest/wp-json/wp/v2/posts?mo_rest_api_test_config=jwt_auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apitest",
+						"wp-json",
+						"wp",
+						"v2",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "mo_rest_api_test_config",
+							"value": "jwt_auth"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
