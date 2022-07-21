@@ -11,7 +11,7 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 
 def test_update_posts():
 
-    response = requests.get((URL+'/7'))
+    response = requests.get((URL+'wp-json/wp/v2/users/13'))
     print(response.json())
     assert_that(response.status_code).is_equal_to(401)
 
@@ -21,9 +21,6 @@ def test_update_posts():
     headers = {
         'Authorization': TOKEN
     }
-    response = requests.post(URL+'/7', headers=headers, data=payload)
+    response = requests.post(URL+'wp-json/wp/v2/users/13', headers=headers, data=payload)
     pprint(response.json())
     assert_that(response.status_code).is_equal_to(200)
-
-
-test_update_posts()
