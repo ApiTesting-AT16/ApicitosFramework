@@ -14,4 +14,5 @@ class Login:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         payload = f"username={username}&password={password}"
         response = requests.post(url, headers=headers, data=payload)
-        return response
+        return response.json()
+print(Login().login('reynel7', 'Asd123456'))

@@ -26,11 +26,11 @@ class APIresponses:
         response = requests.get(url, headers=headers)
         return self._format_responses(response)
 
-    def post(self, url, headers, payload):
+    def post(self, url, payload, headers):
         response = requests.post(url, data=payload, headers=headers)
         return self._format_responses(response)
 
-    def put(self, url, headers, payload):
+    def put(self, url, payload, headers):
         response = requests.put(url, data=payload, headers=headers)
         return self._format_responses(response)
 
