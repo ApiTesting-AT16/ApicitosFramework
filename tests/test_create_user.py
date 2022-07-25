@@ -1,3 +1,4 @@
+import json
 import os
 
 import jsonpath
@@ -5,6 +6,7 @@ import requests
 from assertpy.assertpy import assert_that
 from pprint import pprint
 from dotenv import load_dotenv
+from crud_users import CrudUser
 import pytest
 
 load_dotenv()
@@ -14,20 +16,11 @@ ID_POST = os.getenv('ID')
 
 def test_create_posts():
 
-    payload = {'username': 'Alvaro',
-               'name': 'Sandro',
-               'email': 'sandro@gmail.com',
-               'password': '123456'}
-
-    headers = {
-        'Authorization': TOKEN
-    }
-    crud_post = CrudPost()
-    response = crud_post.retrieve_post(URL, TOKEN, ID_POST)
-    pprint(response.json())
-    responseJson = json.loads(response.text)
-    print(responseJson)
-    print('/n esta es la longitud de response/n')
-    print(len(responseJson))
+    crud_users = CrudUser()
+    response = crud_users.create_user(URL, TOKEN, 'Ivanuser', 'IVAN', 'Ivancito@gmail.com', 'aaa123')
+    pprint(response.as_dict)
+    pprint(response.text)
+    pprint(response.status_code)
+    pprint(response.headers)
     assert_that(response.status_code).is_equal_to(201)
-    assert_that(jsonpath.jsonpath(responseJson, '$.name')[0]).contains("Alvaro")
+    #assert_that(jsonpath.jsonpath(response, '$.name')[0]).contains("Alvaro")
