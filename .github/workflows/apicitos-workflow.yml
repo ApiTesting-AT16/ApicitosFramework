@@ -1,0 +1,14 @@
+name: Build at16-apicitos
+
+on: [push]
+jobs:
+  build:
+    runs-on: apicitos
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install libraries
+      run: | 
+        pip3 install -r requirements.txt

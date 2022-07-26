@@ -1,30 +1,23 @@
 import os
-import requests
 from assertpy.assertpy import assert_that
 from pprint import pprint
 from dotenv import load_dotenv
 import json
+from crud_comment import CrudComment
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
+ID = os.getenv('ID')
 
 
 def test_update_posts():
 
-    payload = {'content': 'Hello, my name is Esteban A.',
-               'status': 'approved'}
-
-    headers = {
-        'Authorization': TOKEN
-    }
-    response = requests.post(URL+'wp-json/wp/v2/comments/4', headers=headers, data=payload)
-    post = response.json()
-    pprint(post)
+    crud_comment = CrudComment()
+    response = crud_comment.update_comment(URL, TOKEN, '1', 'IVAN', 'Ivancito@gmail.com', 'aaa123', 'approved', ID)
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)
     # See if data sent is the same
     data = json.loads(response.text)
     assert_that(data["status"]).contains('approved')
-    # Data is not empty
-    assert_that(response.json()).is_not_empty()
+

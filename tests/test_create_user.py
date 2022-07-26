@@ -1,18 +1,15 @@
-import json
 import os
-
-import jsonpath
-import requests
 from assertpy.assertpy import assert_that
 from pprint import pprint
 from dotenv import load_dotenv
 from crud_users import CrudUser
-import pytest
+
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 ID_POST = os.getenv('ID')
+
 
 def test_create_posts():
 

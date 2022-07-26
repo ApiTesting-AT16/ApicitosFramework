@@ -31,10 +31,8 @@ class CrudUser:
         return response
 
     def update_user(self, URL, token, name, email, password, id_post):
-        print('hola reynel', URL)
-        print('hola reynel 2 ', token)
+
         new_url = f'{URL}/wp-json/wp/v2/users/{id_post}'
-        print('reynel 3 =: ', new_url)
         payload = {'name': name,
                    'email': email,
                    'password': password}
