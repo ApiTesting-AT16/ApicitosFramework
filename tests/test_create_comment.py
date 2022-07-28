@@ -16,4 +16,5 @@ def test_create_comment():
     input_data = json.loads(file.read())
     crud_users = CrudComment()
     response = crud_users.create_comment(URL, TOKEN, input_data)
+    print(response)
     assert_that(response.status_code).is_equal_to(201)
