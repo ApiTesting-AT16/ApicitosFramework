@@ -11,7 +11,7 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 
 def test_delete_comment():
 
-    id_comment = "9"
+    id_comment = "3"
     crud_comment = CrudComment()
     response = crud_comment.delete_comment(URL, TOKEN, id_comment)
     # Successfully response
