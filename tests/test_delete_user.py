@@ -1,23 +1,18 @@
 import os
-import requests
 from assertpy.assertpy import assert_that
 from pprint import pprint
 from dotenv import load_dotenv
+from crud_users import CrudUser
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 
 
-def test_read_posts():
+def test_delete_user():
 
-    response = requests.delete(URL+'wp-json/wp/v2/users/13?reassign=0&force=true')
-    print(response.json())
-    assert_that(response.status_code).is_equal_to(401)
-
-    headers = {
-        'Authorization': TOKEN
-    }
-    response = requests.delete(URL+'wp-json/wp/v2/users/13?reassign=0&force=true', headers=headers)
-    pprint(response.json())
+    query_param = "3?reassign=1&force=true"
+    crud_user = CrudUser()
+    response = crud_user.delete_user(URL, TOKEN, query_param)
+    # Successfully response
     assert_that(response.status_code).is_equal_to(200)

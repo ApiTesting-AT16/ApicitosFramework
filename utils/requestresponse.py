@@ -35,6 +35,6 @@ class APIresponses:
         return self._format_responses(response)
 
     def delete(self, url, headers):
-        response = requests.get(url, headers=headers)
-        return self._get_responses(response)
+        response = requests.delete(url, headers=headers)
+        return self._format_responses(response)
 
