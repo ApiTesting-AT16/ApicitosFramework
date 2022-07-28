@@ -1,21 +1,20 @@
 from utils.requestresponse import APIresponses
 
 
-class CrudUser:
+class CrudMedia:
 
-    def get_user(self, url_base, token, input_data):
+    def get_media(self, base_url, token):
 
-        url = f'{url_base}/wp-json/wp/v2/users'
+        url = f'{base_url}/wp-json/wp/v2/media'
 
-        payload = input_data
         headers = {"Authorization": token}
-        response = APIresponses().get(url, payload, headers)
+        response = APIresponses().get(url, headers)
 
         return response
 
-    def create_user(self, url_base, token, input_data):
+    def create_media(self, base_url, token, input_data):
 
-        url = f'{url_base}/wp-json/wp/v2/users'
+        url = f'{base_url}/wp-json/wp/v2/media'
 
         payload = input_data
         headers = {"Authorization": token}
@@ -23,18 +22,18 @@ class CrudUser:
 
         return response
 
-    def delete_user(self, url_base, token, id_post):
+    def delete_media(self, base_url, token, id_post):
 
-        url = f'{url_base}/wp-json/wp/v2/users/{id_post}'
+        url = f'{base_url}/wp-json/wp/v2/media/{id_post}'
 
         headers = {"Authorization": token}
         response = APIresponses().delete(url, headers)
 
         return response
 
-    def update_user(self, url_base, token, input_data, id_post):
+    def update_media(self, base_url, token, input_data, id_post):
 
-        new_url = f'{url_base}/wp-json/wp/v2/users/{id_post}'
+        new_url = f'{base_url}/wp-json/wp/v2/media/{id_post}'
 
         payload = input_data
         headers = {"Authorization": token}

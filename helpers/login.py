@@ -16,10 +16,12 @@ class Login:
         payload = f"username={username}&password={password}"
         response = requests.post(url, headers=headers, data=payload)
         for token in fileinput.FileInput("../.env", inplace=1):
-            if token.startswith("ACCESS_TOKEN = 'Bearer "):
+            if token.startswith("ACCESS_TOKEN = 'Bearer"):
                 new_token = token.replace(token,
                                           f"ACCESS_TOKEN = '{response.json().get('token_type')} {response.json().get('jwt_token')}'")
                 print(new_token)
             else:
                 print(token, end='')
         return response.json()
+
+print(Login.login('apicitos','1234'))
