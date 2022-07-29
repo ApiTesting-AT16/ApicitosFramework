@@ -66,3 +66,64 @@ def test_create_invalid_email():
     response = crud_user.create_user(URL, TOKEN, input_data)
     # Error response
     assert_that(response.status_code).is_equal_to(400)
+
+def test_create_number_id():
+    Login().login(USER, PASSWORD)
+    file = open('../testdata/get_user/get_user.json', "r")
+    input_data = json.loads(file.read())
+    Lin=0
+    i = 1
+    lenpage=1
+    while lenpage >= 1:
+        crud_user = CrudUser()
+        response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), i,
+                                      input_data.get("per_page"))
+        data = json.loads(response.text)
+        lenpage = len(data)
+        Lin += lenpage
+        i += 1
+    file = open('../testdata/create_user/create_user.json', "r")
+    input_data = json.loads(file.read())
+    crud_user = CrudUser()
+    response = crud_user.create_user(URL, TOKEN, input_data)
+    # Error response
+    assert_that(response.status_code).is_equal_to(201)
+    data = json.loads(response.text)
+    id = data.get("id")
+    assert_that(Lin <= id).is_true()
+
+def test_create_number_post():
+    Login().login(USER, PASSWORD)
+    file = open('../testdata/get_user/get_user.json', "r")
+    input_data = json.loads(file.read())
+    Lin = 0
+    i = 1
+    lenpage = 1
+    while lenpage >= 1:
+        crud_user = CrudUser()
+        response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), i,
+                                      input_data.get("per_page"))
+        data = json.loads(response.text)
+        lenpage = len(data)
+        Lin += lenpage
+        i += 1
+    file = open('../testdata/create_user/create_user.json', "r")
+    input_data = json.loads(file.read())
+    crud_user = CrudUser()
+    response = crud_user.create_user(URL, TOKEN, input_data)
+    # lenght after post
+    assert_that(response.status_code).is_equal_to(201)
+    Lout = 0
+    j = 1
+    lenpageout = 1
+    while lenpageout >= 1:
+        crud_user = CrudUser()
+        response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), j,
+                                      input_data.get("per_page"))
+        data = json.loads(response.text)
+        lenpageout = len(data)
+        Lout += lenpageout
+        j += 1
+    print(Lin)
+    print(Lout)
+    assert_that(Lin+1 == Lout).is_true()

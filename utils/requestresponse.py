@@ -30,6 +30,10 @@ class APIresponses:
         response = requests.post(url, data=payload, headers=headers)
         return self._format_responses(response)
 
+    def post_file(self, url, payload, headers, files):
+        response = requests.post(url, data=payload, headers=headers, files=files)
+        return self._format_responses(response)
+
     def put(self, url, payload, headers):
         response = requests.put(url, data=payload, headers=headers)
         return self._format_responses(response)

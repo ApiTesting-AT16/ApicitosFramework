@@ -3,13 +3,12 @@ from utils.requestresponse import APIresponses
 
 class CrudUser:
 
-    def get_user(self, url_base, token, input_data):
+    def get_user(self, url_base, token, orderby, page, per_page):
 
-        url = f'{url_base}/wp-json/wp/v2/users'
+        url = f'{url_base}/wp-json/wp/v2/users?orderby={orderby}&page={page}&per_page={per_page}'
 
-        payload = input_data
         headers = {"Authorization": token}
-        response = APIresponses().get(url, payload, headers)
+        response = APIresponses().get(url, headers)
 
         return response
 

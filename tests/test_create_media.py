@@ -17,15 +17,14 @@ def test_create_media():
     Login().login(USER, PASSWORD)
     file = open('../testdata/create_media/create_media.json', "r")
     input_data = json.loads(file.read())
-    filed = "C:\\Users\\RIGO LAZO\\Desktop\\english.jpg"
     crud_media = CrudMedia()
-    response = crud_media.create_media(URL, TOKEN, input_data)
+    response = crud_media.create_media(URL, TOKEN, input_data[0], input_data[1].get("file"), input_data[1].get("type"))
+    print(input_data[0].get('file'))
     # Successfully response
     assert_that(response.status_code).is_equal_to(201)
     # See if data sent is the same
     data = json.loads(response.text)
-    assert_that(data["status"]).contains(input_data['status'])
-    assert_that(data["title"]).contains(input_data['title'])
+    print(data)
     assert_that(data["alt_text"]).contains(input_data['alt_text'])
 
 
