@@ -34,13 +34,5 @@ jobs:
 
     - name: Execute Unit Test
       run: |
-        python3 -m pytest tests/test_get_list_comments.py
-        python3 -m pytest tests/test_get_user_list.py
-        python3 -m pytest tests/test_create_comment.py
-        python3 -m pytest tests/test_create_user.py
-        python3 -m pytest tests/test_update_comment.py
-        python3 -m pytest tests/test_update_user.py
-        python3 -m pytest tests/test_delete_comment.py
-        python3 -m pytest tests/test_delete_user.py
-        python3 -m pytest tests/test_update_media.py
-        python3 -m pytest tests/test_delete_media.py
+        pytest tests/test_get_list_comments.py
+
