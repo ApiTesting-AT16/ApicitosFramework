@@ -34,13 +34,13 @@ jobs:
 
     - name: Execute Unit Test
       run: |
-        python3 -m unittest tests.test_get_list_comments
-        python3 -m unittest tests.test_get_user_list
-        python3 -m unittest tests.test_create_comment
-        python3 -m unittest tests.test_create_user
-        python3 -m unittest tests.test_update_comment
-        python3 -m unittest tests.test_update_user
-        python3 -m unittest tests.test_delete_comment
-        python3 -m unittest tests.test_delete_user
-        python3 -m unittest tests.test_update_media
-        python3 -m unittest tests.test_delete_media
+        python3 -m pytest tests.test_get_list_comments
+        python3 -m pytest tests.test_get_user_list
+        python3 -m pytest tests.test_create_comment
+        python3 -m pytest tests.test_create_user
+        python3 -m pytest tests.test_update_comment
+        python3 -m pytest tests.test_update_user
+        python3 -m pytest tests.test_delete_comment
+        python3 -m pytest tests.test_delete_user
+        python3 -m pytest tests.test_update_media
+        python3 -m pytest tests.test_delete_media
