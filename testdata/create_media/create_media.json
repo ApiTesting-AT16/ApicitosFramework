@@ -1,0 +1,21 @@
+[
+  {
+  "status": "publish",
+"title": "Image1",
+"author": 1,
+"alt_text": "Image1",
+"description": "the new description"
+},
+  {
+    "imagen": "1.png"
+  },
+  {
+    "imagen": "2.jpg"
+  },
+  {
+    "imagen": "3.png"
+  },
+  {
+    "imagen": "4.jpg"
+  }
+]
