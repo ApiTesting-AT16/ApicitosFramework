@@ -1,0 +1,55 @@
+{
+    "id": {
+      "type": "integer"
+    },
+    "post": {
+      "type": "integer"
+    },
+    "author_url": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "author_email": {
+      "type": "string"
+    },
+    "author_avatar_urls": {
+      "type": "dict"
+    },
+    "meta": {
+      "type": "list"
+    },
+    "author": {
+      "type": "integer"
+    },
+    "author_ip": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dict"
+    },
+    "author_user_agent": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "date_gmt": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "_links": {"type": "dict", "schema":{"self":{"type": "list"},"collection":{"type": "list"}, "up":{"type": "list"}}
+    }
+  }

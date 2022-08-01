@@ -1,4 +1,8 @@
 from utils.requestresponse import APIresponses
+from dotenv import load_dotenv
+import os
+load_dotenv()
+FOLDER = os.getenv('FOLDERFILE')
 
 
 class CrudMedia:
@@ -12,14 +16,16 @@ class CrudMedia:
 
         return response
 
-    def create_media(self, base_url, token, input_data):
-
+    def create_media(self, base_url, token, input_data, file):
         url = f'{base_url}/wp-json/wp/v2/media'
 
         payload = input_data
+        files = [
+            ('file', (
+                f'{file}', open(f'{FOLDER}{file}', 'rb')))
+        ]
         headers = {"Authorization": token}
-        response = APIresponses().post(url, payload, headers)
-
+        response = APIresponses().post_file(url, payload, headers, files)
         return response
 
     def delete_media(self, base_url, token, id_post):

@@ -42,5 +42,7 @@ jobs:
         python3 -m unittest tests.test_update_user
         python3 -m unittest tests.test_delete_comment
         python3 -m unittest tests.test_delete_user
+        python3 -m unittest tests.test_get_media
+        python3 -m unittest tests.test_create_media
         python3 -m unittest tests.test_update_media
         python3 -m unittest tests.test_delete_media

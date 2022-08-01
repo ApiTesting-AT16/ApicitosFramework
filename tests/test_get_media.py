@@ -8,10 +8,9 @@ URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 
 
-def test_delete_media():
+def test_get_media():
 
-    query_param = "9?reassign=1&force=true"
     crud_media = CrudMedia()
-    response = crud_media.delete_media(URL, TOKEN, query_param)
+    response = crud_media.get_media(URL, TOKEN)
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)

@@ -12,6 +12,15 @@ class CrudComment:
 
         return response
 
+    def get_comment_by_id(self, base_url, token, id_post):
+
+        url = f'{base_url}/wp-json/wp/v2/comments/{id_post}'
+
+        headers = {"Authorization": token}
+        response = APIresponses().get(url, headers)
+
+        return response
+
     def create_comment(self, base_url, token, input_data):
 
         url = f'{base_url}/wp-json/wp/v2/comments'
