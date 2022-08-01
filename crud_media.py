@@ -28,9 +28,9 @@ class CrudMedia:
         response = APIresponses().post_file(url, payload, headers, files)
         return response
 
-    def delete_media(self, base_url, token, id_post):
+    def delete_user(self, url_base, token, id_post, query):
 
-        url = f'{base_url}/wp-json/wp/v2/media/{id_post}'
+        url = f'{url_base}/wp-json/wp/v2/users/{id_post}{query}'
 
         headers = {"Authorization": token}
         response = APIresponses().delete(url, headers)

@@ -11,8 +11,9 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 
 def test_delete_user():
 
-    query_param = "3?reassign=1&force=true"
+    query_param = "?reassign=1&force=true"
+    id_user = "3"
     crud_user = CrudUser()
-    response = crud_user.delete_user(URL, TOKEN, query_param)
+    response = crud_user.delete_user(URL, TOKEN, id_user, query_param)
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)
