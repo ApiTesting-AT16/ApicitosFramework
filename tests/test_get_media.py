@@ -1,19 +1,16 @@
 import os
 from assertpy.assertpy import assert_that
-from pprint import pprint
 from dotenv import load_dotenv
-from crud_users import CrudUser
+from crud_media import CrudMedia
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 
 
-def test_delete_user():
+def test_get_media():
 
-    query_param = "?reassign=1&force=true"
-    id_user = "3"
-    crud_user = CrudUser()
-    response = crud_user.delete_user(URL, TOKEN, id_user, query_param)
+    crud_media = CrudMedia()
+    response = crud_media.get_media(URL, TOKEN)
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)

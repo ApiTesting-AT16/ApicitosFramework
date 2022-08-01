@@ -3,9 +3,9 @@ from utils.requestresponse import APIresponses
 
 class CrudUser:
 
-    def get_user(self, url_base, token):
+    def get_user(self, url_base, token, orderby, page, per_page):
 
-        url = f'{url_base}/wp-json/wp/v2/users'
+        url = f'{url_base}/wp-json/wp/v2/users?orderby={orderby}&page={page}&per_page={per_page}'
 
         headers = {"Authorization": token}
         response = APIresponses().get(url, headers)
@@ -17,7 +17,7 @@ class CrudUser:
         url = f'{url_base}/wp-json/wp/v2/users'
 
         payload = input_data
-        headers = { "Authorization": token }
+        headers = {"Authorization": token}
         response = APIresponses().post(url, payload, headers)
 
         return response
