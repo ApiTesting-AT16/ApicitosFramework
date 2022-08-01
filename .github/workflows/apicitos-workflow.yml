@@ -21,7 +21,6 @@ jobs:
     - name: Install libraries
       run: | 
         pip3 install -r requirements.txt
-        pip install pytest-workflow
 
     - name: Create .env file
       run: |
@@ -35,16 +34,4 @@ jobs:
 
     - name: Execute Unit Test
       run: |
-        pip install pytest
-        pip install pytest-cov
-        python3 -m pytest tests/test_get_list_comments.py
-        python3 -m unittest tests.test_get_user_list
-        python3 -m unittest tests.test_create_comment
-        python3 -m unittest tests.test_create_user
-        python3 -m unittest tests.test_update_comment
-        python3 -m unittest tests.test_update_user
-        python3 -m unittest tests.test_delete_comment
-        python3 -m unittest tests.test_delete_user
-        python3 -m unittest tests.test_update_media
-        python3 -m unittest tests.test_delete_media
         python3 -m pytest --import-mode=append tests/
