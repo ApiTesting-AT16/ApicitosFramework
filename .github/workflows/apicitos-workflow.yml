@@ -34,4 +34,4 @@ jobs:
 
     - name: Execute Unit Test
       run: |
-        python3 -m unittest tests.
+        python3 -m unittest tests/
