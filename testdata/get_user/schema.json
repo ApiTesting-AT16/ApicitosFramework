@@ -1,0 +1,28 @@
+{
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "avatar_urls": {
+      "type": "dict"
+    },
+    "meta": {
+      "type": "list"
+    },
+    "_links": {"type": "dict", "schema":{"self":{"type": "list"},"collection":{"type": "list"}}
+    }
+  }
