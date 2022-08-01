@@ -38,3 +38,7 @@ class APIresponses:
         response = requests.delete(url, headers=headers)
         return self._format_responses(response)
 
+    def post_file(self, url, payload, headers, files):
+        response = requests.post(url, headers=headers, data=payload, files=files)
+        return self._format_responses(response)
+
