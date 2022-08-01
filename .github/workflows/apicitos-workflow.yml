@@ -34,5 +34,5 @@ jobs:
 
     - name: Execute Unit Test
       run: |
-        pytest tests/test_get_list_comments.py
-
+        python3 pytest tests.test_get_list_comments
+        
