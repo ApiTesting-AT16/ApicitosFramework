@@ -22,4 +22,3 @@ class Login:
                 print(token, end='')
         return response.json()
 
-print(Login().login('apicitos','1234'))
