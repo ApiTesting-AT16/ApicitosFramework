@@ -1,5 +1,6 @@
 import os
 import json
+import pytest
 from assertpy.assertpy import assert_that
 from pprint import pprint
 from dotenv import load_dotenv
@@ -14,9 +15,10 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.acceptance
 def test_get_user():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), input_data.get("page"),
@@ -27,10 +29,10 @@ def test_get_user():
     data = json.loads(response.text)
     assert_that(len(data) <= input_data.get("per_page")).is_true()
 
-
+@pytest.mark.negative
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, "TOKEN", input_data.get("orderby"), input_data.get("page"),
@@ -39,10 +41,11 @@ def test_get_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.acceptance
 def test_get_schema():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
-    schema = open('../testdata/get_user/schema.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
+    schema = open('./testdata/get_user/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_user = CrudUser()
@@ -58,9 +61,10 @@ def test_get_schema():
     assert_that(is_valid, description=validator.errors).is_true()
 
 
+@pytest.mark.integrate
 def test_different_id():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     Lin = 0
     i = 1
@@ -80,9 +84,10 @@ def test_different_id():
     assert_that(len(idslist) == len(set(idslist))).is_true()
 
 
+@pytest.mark.integrate
 def test_invalid_perpage():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), input_data.get("page"),
@@ -90,10 +95,10 @@ def test_invalid_perpage():
     # Successfully response
     assert_that(response.status_code).is_equal_to(400)
 
-
+@pytest.mark.negative
 def test_invalid_page():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), "a",

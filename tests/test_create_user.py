@@ -1,7 +1,7 @@
 import os
 import json
 from assertpy.assertpy import assert_that
-from pprint import pprint
+import pytest
 from cerberus import Validator
 from dotenv import load_dotenv
 from crud_users import CrudUser
@@ -14,9 +14,10 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.acceptance
 def test_create_user():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/create_user.json', "r")
+    file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -32,9 +33,10 @@ def test_create_user():
     assert_that(data["roles"][0]).contains(input_data['roles'])
 
 
+@pytest.mark.negative
 def test_duplicate_email():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/email_duplicate.json', "r")
+    file = open('./testdata/create_user/email_duplicate.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -42,9 +44,10 @@ def test_duplicate_email():
     assert_that(response.status_code).is_equal_to(500)
 
 
+@pytest.mark.negative
 def test_duplicate_username():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/email_duplicate.json', "r")
+    file = open('./testdata/create_user/email_duplicate.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -52,9 +55,10 @@ def test_duplicate_username():
     assert_that(response.status_code).is_equal_to(500)
 
 
+@pytest.mark.negative
 def test_create_invalid_token():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/create_user.json', "r")
+    file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, "TOKEN", input_data)
@@ -62,18 +66,21 @@ def test_create_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.negative
 def test_create_invalid_email():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/invalid_email.json', "r")
+    file = open('./testdata/create_user/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
     # Error response
     assert_that(response.status_code).is_equal_to(400)
 
+
+@pytest.mark.integrate
 def test_create_number_id():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     Lin=0
     i = 1
@@ -86,7 +93,7 @@ def test_create_number_id():
         lenpage = len(data)
         Lin += lenpage
         i += 1
-    file = open('../testdata/create_user/create_user.json', "r")
+    file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -96,9 +103,11 @@ def test_create_number_id():
     id = data.get("id")
     assert_that(Lin <= id).is_true()
 
+
+@pytest.mark.acceptance
 def test_create_number_post():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_user/get_user.json', "r")
+    file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     Lin = 0
     i = 1
@@ -111,7 +120,7 @@ def test_create_number_post():
         lenpage = len(data)
         Lin += lenpage
         i += 1
-    file = open('../testdata/create_user/create_user.json', "r")
+    file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -133,10 +142,11 @@ def test_create_number_post():
     assert_that(Lin+1 == Lout).is_true()
 
 
+@pytest.mark.acceptance
 def test_post_schema():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/create_user.json', "r")
-    schema = open('../testdata/create_user/schema.json', "r")
+    file = open('./testdata/create_user/create_user.json', "r")
+    schema = open('./testdata/create_user/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_user = CrudUser()
@@ -149,9 +159,10 @@ def test_post_schema():
     assert_that(is_valid, description=validator.errors).is_true()
 
 
+@pytest.mark.negative
 def test_empty_username():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/empty_username.json', "r")
+    file = open('./testdata/create_user/empty_username.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -159,9 +170,10 @@ def test_empty_username():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.negative
 def test_empty_email():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/empty_email.json', "r")
+    file = open('./testdata/create_user/empty_email.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)
@@ -169,9 +181,10 @@ def test_empty_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.negative
 def test_empty():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_user/empty.json', "r")
+    file = open('./testdata/create_user/empty.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)

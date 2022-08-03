@@ -1,5 +1,6 @@
 import os
 import json
+import pytest
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_media import CrudMedia
@@ -12,9 +13,10 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.acceptance
 def test_create_media():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/create_media/create_media.json', "r")
+    file = open('./testdata/create_media/create_media.json', "r")
     input_data = json.loads(file.read())
     crud_media = CrudMedia()
     response = crud_media.create_media(URL, TOKEN, input_data[0], input_data[1].get("file"))

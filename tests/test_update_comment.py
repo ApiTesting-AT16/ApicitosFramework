@@ -1,5 +1,6 @@
 import os
 import json
+import pytest
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from helpers.login import Login
@@ -14,10 +15,11 @@ PASSWORD = os.getenv('PASSWORD')
 ID = os.getenv('ID_COMMENT')
 
 
+@pytest.mark.acceptance
 def test_valid_update():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -25,10 +27,11 @@ def test_valid_update():
     assert_that(response.status_code).is_equal_to(200)
 
 
+@pytest.mark.acceptance
 def test_data_sent():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -39,10 +42,11 @@ def test_data_sent():
     assert_that(data["status"]).contains(input_data['status'])
 
 
+@pytest.mark.acceptance
 def test_update_status_default():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/status.json', "r")
+    file = open('./testdata/update_comment/status.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -51,10 +55,11 @@ def test_update_status_default():
     assert_that(data["status"]).contains('approved')
 
 
+@pytest.mark.negative
 def test_update_invalid_token():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, "TOKEN", input_data, ID)
@@ -62,11 +67,12 @@ def test_update_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.negative
 def test_update_invalid_id():
 
     Login().login(USER, PASSWORD)
     invalid_id = 100
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, invalid_id)
@@ -74,10 +80,11 @@ def test_update_invalid_id():
     assert_that(response.status_code).is_equal_to(404)
 
 
+@pytest.mark.negative
 def test_update_invalid_post_id():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/invalid_post_id.json', "r")
+    file = open('./testdata/update_comment/invalid_post_id.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -85,6 +92,7 @@ def test_update_invalid_post_id():
     assert_that(response.status_code).is_equal_to(403)
 
 
+@pytest.mark.acceptance
 def test_update_empty():
 
     Login().login(USER, PASSWORD)
@@ -96,10 +104,11 @@ def test_update_empty():
     assert_that(data).is_not_empty()
 
 
+@pytest.mark.negative
 def test_update_invalid_email():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/invalid_email.json', "r")
+    file = open('./testdata/update_comment/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -107,10 +116,11 @@ def test_update_invalid_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.acceptance
 def test_valid_update_and_get():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.update_comment(URL, TOKEN, input_data, ID)
@@ -124,10 +134,11 @@ def test_valid_update_and_get():
     assert_that(data["status"]).contains(data_get["status"])
 
 
+@pytest.mark.acceptance
 def test_schema_of_update_comment():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
-    schema = open('../testdata/update_comment/schema.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
+    schema = open('./testdata/update_comment/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_comment = CrudComment()
@@ -135,5 +146,5 @@ def test_schema_of_update_comment():
     validator = Validator(output_data, require_all=False)
     print(validator)
     is_valid = validator.validate(response.as_dict)
-    # Verify if
+    # Verify if response is valid comparing with the schema
     assert_that(is_valid, description=validator.errors).is_true()

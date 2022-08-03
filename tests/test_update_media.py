@@ -1,5 +1,6 @@
 import os
 import json
+import pytest
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from helpers.login import Login
@@ -13,10 +14,11 @@ PASSWORD = os.getenv('PASSWORD')
 ID = os.getenv('ID_COMMENT')
 
 
+@pytest.mark.acceptance
 def test_update_media():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_media/update_media.json', "r")
+    file = open('./testdata/update_media/update_media.json', "r")
     input_data = json.loads(file.read())
     crud_media = CrudMedia()
     response = crud_media.update_media(URL, TOKEN, input_data, 5)
