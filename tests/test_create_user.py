@@ -77,7 +77,7 @@ def test_create_invalid_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
-@pytest.mark.acceptance
+@pytest.mark.integrate
 def test_create_number_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
