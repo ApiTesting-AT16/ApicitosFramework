@@ -7,3 +7,4 @@ def validator_schema(schema, response):
     is_valid = validator.validate(response)
     valid = [is_valid, validator]
     return valid
+
