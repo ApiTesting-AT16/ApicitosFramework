@@ -1,9 +1,14 @@
 import os
 import json
+import random
+from pprint import pprint
+from helpers.idslist import get_id_user_list
 import pytest
 from assertpy.assertpy import assert_that
 from cerberus import Validator
 from dotenv import load_dotenv
+
+
 from crud_users import CrudUser
 from helpers.login import Login
 
@@ -14,14 +19,24 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
+@pytest.fixture(scope="function")
+def preconditions():
+    file = open('./testdata/get_user/get_user.json', "r")
+    input_data = json.loads(file.read())
+    result = get_id_user_list(input_data)
+
+    return result
+
 @pytest.mark.acceptance
-def test_update_user():
+def test_update_user(preconditions):
 
     file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudUser()
-    response = crud_users.update_user(URL, TOKEN, input_data, ID)
-    assert_that(response.status_code).is_equal_to(200)
+    data = preconditions
+    id_users = data[random.randint(1, len(data)-1)]
+    response = crud_users.update_user(URL, TOKEN, input_data, id_users)
+    assert_that(response.status_code).is_equal_to(400)
     data = json.loads(response.text)
     assert_that(data["email"]).contains(input_data['email'])
     assert_that(data["name"]).contains(input_data['name'])
@@ -31,14 +46,16 @@ def test_update_user():
 
 
 @pytest.mark.acceptance
-def test_update_schema():
+def test_update_schema(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_user/update_user.json', "r")
     schema = open('./testdata/update_user/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_user = CrudUser()
-    response = crud_user.update_user(URL, TOKEN, input_data, ID)
+    data = preconditions
+    id_users = data[random.randint(1, len(data)-1)]
+    response = crud_user.update_user(URL, TOKEN, input_data, id_users)
     # Error response
     assert_that(response.status_code).is_equal_to(200)
     validator = Validator(output_data, require_all=False)
@@ -48,13 +65,15 @@ def test_update_schema():
 
 
 @pytest.mark.negative
-def test_update_invalid_token():
+def test_update_invalid_token(preconditions):
 
     Login().login(USER, PASSWORD)
-    file = open('./testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
-    response = crud_user.update_user(URL, "TOKEN", input_data, ID)
+    data = preconditions
+    id_users = data[random.randint(1, len(data)-1)]
+    response = crud_user.update_user(URL, "TOKEN", input_data, id_users)
     # Verify the response is 401 when is added with an invalid authorization token
     assert_that(response.status_code).is_equal_to(401)
 
@@ -73,23 +92,27 @@ def test_update_invalid_id():
 
 
 @pytest.mark.negative
-def test_update_invalid_email():
+def test_update_invalid_email(preconditions):
 
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_user/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
-    response = crud_user.update_user(URL, TOKEN, input_data, ID)
+    data = preconditions
+    id_users = data[random.randint(1, len(data)-1)]
+    response = crud_user.update_user(URL, TOKEN, input_data, id_users)
     # Verify when author email is filled with invalid param display a response 400
     assert_that(response.status_code).is_equal_to(400)
 
 
 @pytest.mark.negative
-def test_empty():
+def test_empty(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_user/empty.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
-    response = crud_user.create_user(URL, TOKEN, input_data)
+    data = preconditions
+    id_users = data[random.randint(1, len(data)-1)]
+    response = crud_user.update_user(URL, TOKEN, input_data, id_users)
     # Successfully response
     assert_that(response.status_code).is_equal_to(400)
