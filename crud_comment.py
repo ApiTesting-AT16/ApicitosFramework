@@ -3,9 +3,9 @@ from utils.requestresponse import APIresponses
 
 class CrudComment:
 
-    def get_comment(self, base_url, token):
+    def get_comment(self, base_url, token, orderby, page, per_page):
 
-        url = f'{base_url}/wp-json/wp/v2/comments'
+        url = f'{base_url}/wp-json/wp/v2/comments?orderby={orderby}&page={page}&per_page={per_page}'
 
         headers = {"Authorization": token}
         response = APIresponses().get(url, headers)
