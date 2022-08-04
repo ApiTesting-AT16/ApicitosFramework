@@ -19,7 +19,9 @@ def preconditions():
     return response
 
 
-@pytest.mark.acceptance
+@pytest.mark.regression
+@pytest.mark.blackbox
+@pytest.mark.negative
 def test_delete_comment(preconditions):
     crud_comment = CrudComment()
     data = json.loads(preconditions.text)
