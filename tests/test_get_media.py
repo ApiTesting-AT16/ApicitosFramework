@@ -12,6 +12,9 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.regression
+@pytest.mark.black_box
+@pytest.mark.sanity
 @pytest.mark.acceptance
 def test_get_media():
     Login().login(USER, PASSWORD)

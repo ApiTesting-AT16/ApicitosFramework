@@ -14,6 +14,7 @@ To execute the framework needs: \
     ACCESS_TOKEN -> Copy the authorization token generate with the pluggin WordPress REST API Authentication e.g. ACCESS_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey...'
     ID_COMMENT -> id of comment created 
     ID_USER -> id of user created
+    FOLDERFILE = './files/'
 5. Run the following command to run all test cases and get reports \
    - py.test --alluredir=%allure_result_folder% ./tests
 

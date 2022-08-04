@@ -23,6 +23,9 @@ def preconditions():
     return response
 
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
 def test_valid_update(preconditions):
     Login().login(USER, PASSWORD)
@@ -36,7 +39,9 @@ def test_valid_update(preconditions):
     assert_that(response.status_code).is_equal_to(200)
 
 
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@pytest.mark.sanity
 def test_data_sent(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
@@ -52,6 +57,8 @@ def test_data_sent(preconditions):
     assert_that(data["status"]).contains(input_data['status'])
 
 
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
 def test_update_status_default(preconditions):
     Login().login(USER, PASSWORD)
@@ -66,7 +73,9 @@ def test_update_status_default(preconditions):
     assert_that(data["status"]).contains('approved')
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.security
 def test_update_invalid_token(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
@@ -79,6 +88,7 @@ def test_update_invalid_token(preconditions):
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
 def test_update_invalid_id(preconditions):
     Login().login(USER, PASSWORD)
@@ -91,6 +101,7 @@ def test_update_invalid_id(preconditions):
     assert_that(response.status_code).is_equal_to(404)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
 def test_update_invalid_post_id(preconditions):
     Login().login(USER, PASSWORD)
@@ -104,6 +115,8 @@ def test_update_invalid_post_id(preconditions):
     assert_that(response.status_code).is_equal_to(403)
 
 
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
 def test_update_empty(preconditions):
     Login().login(USER, PASSWORD)
@@ -117,6 +130,7 @@ def test_update_empty(preconditions):
     assert_that(data).is_not_empty()
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
 def test_update_invalid_email(preconditions):
     Login().login(USER, PASSWORD)
@@ -130,6 +144,8 @@ def test_update_invalid_email(preconditions):
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
 def test_valid_update_and_get(preconditions):
     Login().login(USER, PASSWORD)
@@ -149,6 +165,9 @@ def test_valid_update_and_get(preconditions):
     assert_that(data["status"]).contains(data_get["status"])
 
 
+@pytest.mark.regression
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
 def test_schema_of_update_comment(preconditions):
     Login().login(USER, PASSWORD)
