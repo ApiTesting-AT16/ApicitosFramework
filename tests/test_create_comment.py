@@ -2,10 +2,10 @@ import os
 import json
 import pytest
 from assertpy.assertpy import assert_that
-from pprint import pprint
 from dotenv import load_dotenv
 from crud_comment import CrudComment
 from helpers.login import Login
+from utils.schema_validator import validator_schema
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
@@ -15,9 +15,12 @@ PASSWORD = os.getenv('PASSWORD')
 
 
 @pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
+@pytest.mark.regression
 def test_create_comment():
-
-    file = open('../testdata/create_comment.json', "r")
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudComment()
     response = crud_users.create_comment(URL, TOKEN, input_data)
@@ -26,10 +29,12 @@ def test_create_comment():
 
 
 @pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
+@pytest.mark.regression
 def test_create_status():
-
-    #Login().login(USER, PASSWORD)
-    file = open('../testdata/create_comment.json', "r")
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment2.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.create_comment(URL, TOKEN, input_data)
@@ -39,8 +44,9 @@ def test_create_status():
 
 
 @pytest.mark.negative
+@pytest.mark.blackbox
 def test_get_invalid_token():
-    #Login().login(USER, PASSWORD)
+    Login().login(USER, PASSWORD)
     crud_comment = CrudComment()
     response = crud_comment.get_comment(URL, "TOKEN")
     # Error response
@@ -48,8 +54,10 @@ def test_get_invalid_token():
 
 
 @pytest.mark.negative
+@pytest.mark.blackbox
 def test_create_duplicate_comment():
-    file = open('../testdata/create_comment.json', "r")
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudComment()
     response = crud_users.create_comment(URL, TOKEN, input_data)
@@ -58,12 +66,31 @@ def test_create_duplicate_comment():
 
 
 @pytest.mark.negative
+@pytest.mark.blackbox
 def test_update_invalid_email():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/invalid_email.json', "r")
+    file = open('./testdata/update_comment/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.create_comment(URL, TOKEN, input_data)
     # Verify when author email is filled with invalid param display a response 400
     assert_that(response.status_code).is_equal_to(400)
 
+
+@pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
+@pytest.mark.regression
+def test_get_schema():
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment.json', "r")
+    schema = open('./testdata/create_comment/schema.json', "r")
+    input_data = json.loads(file.read())
+    output_data = json.loads(schema.read())
+    crud_comment = CrudComment()
+    response = crud_comment.create_comment(URL, TOKEN, input_data)
+    position = 1
+    # Error response
+    assert_that(response.status_code).is_equal_to(201)
+    is_valid = validator_schema(output_data, response.as_dict)
+    assert_that(is_valid[0], description=is_valid[1].errors).is_true()

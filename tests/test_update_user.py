@@ -1,5 +1,6 @@
 import os
 import json
+import pytest
 from assertpy.assertpy import assert_that
 from cerberus import Validator
 from dotenv import load_dotenv
@@ -13,9 +14,10 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
+@pytest.mark.acceptance
 def test_update_user():
 
-    file = open('../testdata/update_user/update_user.json', "r")
+    file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudUser()
     response = crud_users.update_user(URL, TOKEN, input_data, ID)
@@ -28,10 +30,11 @@ def test_update_user():
     assert_that(data["roles"][0]).contains(input_data['roles'])
 
 
+@pytest.mark.acceptance
 def test_update_schema():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_user/update_user.json', "r")
-    schema = open('../testdata/update_user/schema.json', "r")
+    file = open('./testdata/update_user/update_user.json', "r")
+    schema = open('./testdata/update_user/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_user = CrudUser()
@@ -44,10 +47,11 @@ def test_update_schema():
     assert_that(is_valid, description=validator.errors).is_true()
 
 
+@pytest.mark.negative
 def test_update_invalid_token():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_comment/update_valid_comment.json', "r")
+    file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.update_user(URL, "TOKEN", input_data, ID)
@@ -55,11 +59,12 @@ def test_update_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.negative
 def test_update_invalid_id():
 
     Login().login(USER, PASSWORD)
     invalid_id = 100
-    file = open('../testdata/update_user/update_user.json', "r")
+    file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.update_user(URL, TOKEN, input_data, invalid_id)
@@ -67,10 +72,11 @@ def test_update_invalid_id():
     assert_that(response.status_code).is_equal_to(404)
 
 
+@pytest.mark.negative
 def test_update_invalid_email():
 
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_user/invalid_email.json', "r")
+    file = open('./testdata/update_user/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.update_user(URL, TOKEN, input_data, ID)
@@ -78,9 +84,10 @@ def test_update_invalid_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.negative
 def test_empty():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/update_user/empty.json', "r")
+    file = open('./testdata/update_user/empty.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.create_user(URL, TOKEN, input_data)

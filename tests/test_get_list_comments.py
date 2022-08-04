@@ -1,11 +1,12 @@
 import os
 import json
 import pytest
-import jsonpath
+
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_comment import CrudComment
 from helpers.login import Login
+from helpers.idslist import get_id_comment_list
 from utils.schema_validator import validator_schema
 
 
@@ -17,35 +18,54 @@ PASSWORD = os.getenv('PASSWORD')
 
 
 @pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
+@pytest.mark.regression
 def test_get_list_comments():
-
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/get_comment/get_comment.json', "r")
     crud_comment = CrudComment()
-    response = crud_comment.get_comment(URL, TOKEN)
+    input_data = json.loads(file.read())
+    response = crud_comment.get_comment(URL, TOKEN, input_data.get("orderby"),
+                                        input_data.get("page"),
+                                        input_data.get("per_page"))
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)
 
 
 @pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
 def test_get_status():
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/get_comment/get_comment.json', "r")
     crud_comment = CrudComment()
-    response = crud_comment.get_comment(URL, TOKEN)
+    input_data = json.loads(file.read())
+    response = crud_comment.get_comment(URL, TOKEN, input_data.get("orderby"),
+                                        input_data.get("page"),
+                                        input_data.get("per_page"))
     data = json.loads(response.text)
     print(data)
     assert_that(str(data[0])).contains('approved')
 
 
 @pytest.mark.negative
+@pytest.mark.blackbox
 def test_get_invalid_token():
-    #Login().login(USER, PASSWORD)
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/get_comment/get_comment.json', "r")
     crud_comment = CrudComment()
-    response = crud_comment.get_comment(URL, "TOKEN")
+    input_data = json.loads(file.read())
+    response = crud_comment.get_comment(URL, "TOKEN", input_data.get("orderby"),
+                                        input_data.get("page"),
+                                        input_data.get("per_page"))
     # Error response
     assert_that(response.status_code).is_equal_to(401)
 
 
 @pytest.mark.negative
+@pytest.mark.blackbox
 def test_update_invalid_id():
-
     Login().login(USER, PASSWORD)
     invalid_id = 100
     crud_comment = CrudComment()
@@ -54,11 +74,25 @@ def test_update_invalid_id():
     assert_that(response.status_code).is_equal_to(404)
 
 
+@pytest.mark.functional
+@pytest.mark.sanity
+@pytest.mark.blackbox
+def test_different_id():
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/get_comment/get_comment.json', "r")
+    input_data = json.loads(file.read())
+    print(get_id_comment_list(input_data))
+    assert_that(len(get_id_comment_list(input_data)) == len(set(get_id_comment_list(input_data)))).is_true()
+
+
 @pytest.mark.acceptance
+@pytest.mark.sanity
+@pytest.mark.blackbox
+@pytest.mark.regression
 def test_get_schema():
     Login().login(USER, PASSWORD)
-    file = open('../testdata/get_comment/get_comment.json', "r")
-    schema = open('../testdata/get_comment/schema.json', "r")
+    file = open('./testdata/get_comment/get_comment.json', "r")
+    schema = open('./testdata/get_comment/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
     crud_comment = CrudComment()

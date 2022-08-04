@@ -1,4 +1,5 @@
 import os
+import pytest
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_media import CrudMedia
@@ -8,6 +9,7 @@ URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 
 
+@pytest.mark.acceptance
 def test_delete_media():
 
     query_param = "9?reassign=1&force=true"

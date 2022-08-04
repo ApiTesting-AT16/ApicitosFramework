@@ -1,8 +1,8 @@
-{ "username": "Ojetin",
-  "name": "Ojete",
-  "first_name": "Ojete",
-  "last_name": "Ojete",
-  "email": "Ojetin125@gmail.com",
+{ "username": "Rumanos",
+  "name": "Rumanos",
+  "first_name": "Rumanos",
+  "last_name": "Rumanos",
+  "email": "Rumanos2125@gmail.com",
   "password": "1234",
-  "roles": "administrator"
+  "roles": "subscriber"
 }
