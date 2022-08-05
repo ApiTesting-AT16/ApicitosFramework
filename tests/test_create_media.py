@@ -1,6 +1,7 @@
 import os
 import json
 import pytest
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_media import CrudMedia
@@ -17,6 +18,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.black_box
 @pytest.mark.sanity
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_create_media():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_media/create_media.json', "r")

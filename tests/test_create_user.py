@@ -1,5 +1,6 @@
 import os
 import json
+import allure
 from assertpy.assertpy import assert_that
 import pytest
 from dotenv import load_dotenv
@@ -15,7 +16,11 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_create_user():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/create_user.json', "r")
@@ -34,7 +39,9 @@ def test_create_user():
     assert_that(data["roles"][0]).contains(input_data['roles'])
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_duplicate_email():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/email_duplicate.json', "r")
@@ -45,7 +52,9 @@ def test_duplicate_email():
     assert_that(response.status_code).is_equal_to(500)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_duplicate_username():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/email_duplicate.json', "r")
@@ -56,7 +65,9 @@ def test_duplicate_username():
     assert_that(response.status_code).is_equal_to(500)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_create_invalid_token():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/create_user5.json', "r")
@@ -67,7 +78,9 @@ def test_create_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_create_invalid_email():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/invalid_email.json', "r")
@@ -78,7 +91,9 @@ def test_create_invalid_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
-@pytest.mark.integrate
+@pytest.mark.black_box
+@pytest.mark.acceptance
+@allure.severity(allure.severity_level.MINOR)
 def test_create_number_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -96,7 +111,10 @@ def test_create_number_id():
     assert_that(Lin <= id).is_true()
 
 
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.MINOR)
 def test_create_number_post():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -117,7 +135,11 @@ def test_create_number_post():
     assert_that(Lin+1 == Lout).is_true()
 
 
+@pytest.mark.regression
+@pytest.mark.sanity
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.NORMAL)
 def test_post_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/create_user4.json', "r")
@@ -133,7 +155,9 @@ def test_post_schema():
     assert_that(is_valid[0], description=is_valid[1].errors).is_true()
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_empty_username():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/empty_username.json', "r")
@@ -144,7 +168,9 @@ def test_empty_username():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_empty_email():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/empty_email.json', "r")
@@ -155,7 +181,9 @@ def test_empty_email():
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_empty():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_user/empty.json', "r")
