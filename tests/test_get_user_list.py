@@ -1,6 +1,7 @@
 import os
 import json
 import pytest
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_users import CrudUser
@@ -15,7 +16,11 @@ USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_get_user():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -29,7 +34,9 @@ def test_get_user():
     data = json.loads(response.text)
     assert_that(len(data) <= input_data.get("per_page")).is_true()
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -41,7 +48,11 @@ def test_get_invalid_token():
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_get_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -58,7 +69,9 @@ def test_get_schema():
     assert_that(is_valid[0], description=is_valid[1].errors).is_true()
 
 
-@pytest.mark.integrate
+@pytest.mark.black_box
+@pytest.mark.acceptance
+@allure.severity(allure.severity_level.NORMAL)
 def test_different_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -67,7 +80,9 @@ def test_different_id():
     assert_that(len(get_id_user_list(input_data)) == len(set(get_id_user_list(input_data)))).is_true()
 
 
-@pytest.mark.integrate
+@pytest.mark.black_box
+@pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_invalid_perpage():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -77,7 +92,10 @@ def test_invalid_perpage():
     # Successfully response
     assert_that(response.status_code).is_equal_to(400)
 
+
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_invalid_page():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")

@@ -1,6 +1,7 @@
 import os
 import json
 import pytest
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_comment import CrudComment
@@ -18,6 +19,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
+@allure.severity(allure.severity_level.CRITICAL)
 def test_create_comment():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_comment/create_comment.json', "r")
@@ -32,6 +34,7 @@ def test_create_comment():
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
+@allure.severity(allure.severity_level.MINOR)
 def test_create_status():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_comment/create_comment2.json', "r")
@@ -45,6 +48,7 @@ def test_create_status():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
     crud_comment = CrudComment()
@@ -55,18 +59,7 @@ def test_get_invalid_token():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
-def test_create_duplicate_comment():
-    Login().login(USER, PASSWORD)
-    file = open('./testdata/create_comment.json', "r")
-    input_data = json.loads(file.read())
-    crud_users = CrudComment()
-    response = crud_users.create_comment(URL, TOKEN, input_data)
-    print(response)
-    assert_that(response.status_code).is_equal_to(409)
-
-
-@pytest.mark.negative
-@pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_email():
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/invalid_email.json', "r")
@@ -81,6 +74,7 @@ def test_update_invalid_email():
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
+@allure.severity(allure.severity_level.NORMAL)
 def test_get_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_comment/create_comment.json', "r")
