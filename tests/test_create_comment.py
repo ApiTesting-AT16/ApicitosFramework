@@ -6,6 +6,7 @@ from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_comment import CrudComment
 from helpers.login import Login
+from helpers.name_generator import Comment_Data
 from utils.schema_validator import validator_schema
 
 load_dotenv()
@@ -22,6 +23,7 @@ PASSWORD = os.getenv('PASSWORD')
 @allure.severity(allure.severity_level.CRITICAL)
 def test_create_comment():
     Login().login(USER, PASSWORD)
+    Comment_Data().aleatory_content('create_comment/create_comment.json')
     file = open('./testdata/create_comment/create_comment.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudComment()
@@ -37,6 +39,7 @@ def test_create_comment():
 @allure.severity(allure.severity_level.MINOR)
 def test_create_status():
     Login().login(USER, PASSWORD)
+    Comment_Data().aleatory_content('create_comment/create_comment2.json')
     file = open('./testdata/create_comment/create_comment2.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
@@ -51,10 +54,25 @@ def test_create_status():
 @allure.severity(allure.severity_level.MINOR)
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
+    Comment_Data().aleatory_content('create_comment/create_comment2.json')
+    file = open('./testdata/create_comment/create_comment2.json', "r")
+    input_data = json.loads(file.read())
     crud_comment = CrudComment()
-    response = crud_comment.get_comment(URL, "TOKEN")
+    response = crud_comment.create_comment(URL, "TOKEN", input_data)
     # Error response
     assert_that(response.status_code).is_equal_to(401)
+
+
+@pytest.mark.negative
+@pytest.mark.blackbox
+def test_create_duplicate_comment():
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment.json', "r")
+    input_data = json.loads(file.read())
+    crud_users = CrudComment()
+    response = crud_users.create_comment(URL, TOKEN, input_data)
+    print(response)
+    assert_that(response.status_code).is_equal_to(409)
 
 
 @pytest.mark.negative
@@ -77,7 +95,8 @@ def test_update_invalid_email():
 @allure.severity(allure.severity_level.NORMAL)
 def test_get_schema():
     Login().login(USER, PASSWORD)
-    file = open('./testdata/create_comment/create_comment.json', "r")
+    Comment_Data().aleatory_content('create_comment/create_comment2.json')
+    file = open('./testdata/create_comment/create_comment2.json', "r")
     schema = open('./testdata/create_comment/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())

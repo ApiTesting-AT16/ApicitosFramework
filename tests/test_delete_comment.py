@@ -16,7 +16,6 @@ PASSWORD = os.getenv('PASSWORD')
 
 @pytest.fixture(scope="module")
 def preconditions():
-    # Login().login(USER, PASSWORD)
     file = open('./testdata/delete_comment/create_comment.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudComment()
@@ -29,7 +28,7 @@ def preconditions():
 @pytest.mark.negative
 @allure.severity(allure.severity_level.CRITICAL)
 def test_delete_comment(preconditions):
-    # Login().login(USER, PASSWORD)
+    Login().login(USER, PASSWORD)
     crud_comment = CrudComment()
     data = json.loads(preconditions.text)
     id_comment = data["id"]

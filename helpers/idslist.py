@@ -1,5 +1,6 @@
 import os
 import json
+import allure
 from dotenv import load_dotenv
 from crud_users import CrudUser
 from crud_comment import CrudComment
@@ -9,6 +10,7 @@ URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
 
 
+@allure.step('Get Id user list')
 def get_id_user_list(input_data):
     i = 1
     lenpage = 1
@@ -26,6 +28,7 @@ def get_id_user_list(input_data):
     return idslist
 
 
+@allure.step('Get Id comment list')
 def get_id_comment_list(input_data):
     i = 1
     lenpage = 1
@@ -43,6 +46,7 @@ def get_id_comment_list(input_data):
     return idslist
 
 
+@allure.step('Get Length User')
 def get_length_user(input_data):
     Lin = 0
     i = 1
@@ -58,6 +62,7 @@ def get_length_user(input_data):
     return Lin
 
 
+@allure.step('Get Length Comments')
 def get_length_comment(input_data):
     Lin = 0
     i = 1

@@ -1,4 +1,5 @@
 import namegenerator
+import allure
 import fileinput
 import random
 
@@ -6,6 +7,7 @@ import random
 class User_Data:
 
     @staticmethod
+    @allure.step('Generate Email')
     def aleatory_email(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "email":'):
@@ -18,6 +20,7 @@ class User_Data:
         return 'change email'
 
     @staticmethod
+    @allure.step('Generate Username')
     def aleatory_username(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "username":'):
@@ -29,6 +32,7 @@ class User_Data:
         return 'change username'
 
     @staticmethod
+    @allure.step('Generate Name')
     def aleatory_name(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "name":'):
@@ -40,6 +44,7 @@ class User_Data:
         return 'change name'
 
     @staticmethod
+    @allure.step('Generate First Name')
     def aleatory_first_name(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "first_name":'):
@@ -51,6 +56,7 @@ class User_Data:
         return 'change first_name'
 
     @staticmethod
+    @allure.step('Generate Last Name')
     def aleatory_last_name(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "last_name":'):
@@ -62,6 +68,7 @@ class User_Data:
         return 'change last_name'
 
     @staticmethod
+    @allure.step('Generate Role')
     def aleatory_roles(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "roles":'):
@@ -77,6 +84,7 @@ class User_Data:
 class Comment_Data:
 
     @staticmethod
+    @allure.step('Generate Author Email')
     def aleatory_author_email(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "author_email":'):
@@ -89,6 +97,7 @@ class Comment_Data:
         return 'change author_email'
 
     @staticmethod
+    @allure.step('Generate Author Name')
     def aleatory_author_name(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "author_name":'):
@@ -100,6 +109,7 @@ class Comment_Data:
         return 'change author_name'
 
     @staticmethod
+    @allure.step('Generate Content')
     def aleatory_content(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "content":'):
@@ -111,6 +121,7 @@ class Comment_Data:
         return 'change content'
 
     @staticmethod
+    @allure.step('Generate Status')
     def aleatory_status(load):
         for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
             if line.startswith(f'  "status":'):
