@@ -22,6 +22,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Verify the response is 201 when is creating user successfully and verify the data of response")
 def test_create_user():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/create_user.json')
@@ -49,7 +50,8 @@ def test_create_user():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
-def test_duplicate_email():
+@allure.description("Verify the response is 500 when is creating user with an existing email ")
+def test_create_duplicate_email():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/email_duplicate.json')
     User_Data().aleatory_name('create_user/email_duplicate.json')
@@ -67,6 +69,7 @@ def test_duplicate_email():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the response is 500 when is creating user with an existing Username ")
 def test_duplicate_username():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_email('create_user/username_duplicate.json')
@@ -85,6 +88,7 @@ def test_duplicate_username():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify response is 401 when we send a invalid token")
 def test_create_invalid_token():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/create_user5.json')
@@ -104,6 +108,7 @@ def test_create_invalid_token():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the response is 400 when we send a invalid email")
 def test_create_invalid_email():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/invalid_email.json')
@@ -122,6 +127,7 @@ def test_create_invalid_email():
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify that the ID is major or equal of the number of users")
 def test_create_number_id():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/create_user2.json')
@@ -149,6 +155,7 @@ def test_create_number_id():
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the number of users add 1 when create a new user")
 def test_create_number_post():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -180,7 +187,8 @@ def test_create_number_post():
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.NORMAL)
-def test_post_schema():
+@allure.description("Verify if schema of response is correctly when is creating user successfully")
+def test_post_user_schema():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/create_user4.json')
     User_Data().aleatory_email('create_user/create_user4.json')
@@ -204,6 +212,7 @@ def test_post_schema():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the response is 400 when send a empty username")
 def test_empty_username():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_email('create_user/empty_username.json')
@@ -222,6 +231,7 @@ def test_empty_username():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the response is 400 when send a empty email")
 def test_empty_email():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/empty_email.json')
@@ -240,6 +250,7 @@ def test_empty_email():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify the response is 400 when send a empty data")
 def test_empty():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/empty.json')
