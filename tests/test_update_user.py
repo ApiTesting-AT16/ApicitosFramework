@@ -88,6 +88,7 @@ def test_update_schema_users(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 401 when is added with an invalid authorization token")
 def test_update_users_invalid_token(preconditions):
