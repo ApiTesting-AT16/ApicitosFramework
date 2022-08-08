@@ -1,12 +1,14 @@
 from utils.requestresponse import APIresponses
 from dotenv import load_dotenv
 import os
+import allure
 load_dotenv()
 FOLDER = os.getenv('FOLDERFILE')
 
 
 class CrudMedia:
 
+    @allure.step('Get Media')
     def get_media(self, base_url, token):
 
         url = f'{base_url}/wp-json/wp/v2/media'
@@ -16,6 +18,7 @@ class CrudMedia:
 
         return response
 
+    @allure.step('Create Media')
     def create_media(self, base_url, token, input_data, file):
         url = f'{base_url}/wp-json/wp/v2/media'
 
@@ -28,6 +31,7 @@ class CrudMedia:
         response = APIresponses().post_file(url, payload, headers, files)
         return response
 
+    @allure.step('Delete Media')
     def delete_media(self, url_base, token, id_post, query):
 
         url = f'{url_base}/wp-json/wp/v2/media/{id_post}{query}'
@@ -37,6 +41,7 @@ class CrudMedia:
 
         return response
 
+    @allure.step('Update Media')
     def update_media(self, base_url, token, input_data, id_post):
 
         new_url = f'{base_url}/wp-json/wp/v2/media/{id_post}'
