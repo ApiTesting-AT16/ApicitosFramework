@@ -53,6 +53,7 @@ def test_get_status():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
+@pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)

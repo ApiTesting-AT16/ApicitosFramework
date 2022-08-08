@@ -87,6 +87,7 @@ def test_create_user_duplicate_username():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify response is 401 when we send a invalid token")
 def test_create_user_invalid_token():

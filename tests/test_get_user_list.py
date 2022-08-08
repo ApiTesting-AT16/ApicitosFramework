@@ -37,6 +37,7 @@ def test_get_user():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify if response is 401 when we send a invalid token")
 def test_get_user_invalid_token():
