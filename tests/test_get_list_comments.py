@@ -1,7 +1,7 @@
 import os
 import json
 import pytest
-
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from crud_comment import CrudComment
@@ -21,6 +21,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
+@allure.severity(allure.severity_level.CRITICAL)
 def test_get_list_comments():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -36,6 +37,7 @@ def test_get_list_comments():
 @pytest.mark.acceptance
 @pytest.mark.sanity
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_get_status():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -51,6 +53,7 @@ def test_get_status():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_get_invalid_token():
     #Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -65,6 +68,7 @@ def test_get_invalid_token():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_id():
     Login().login(USER, PASSWORD)
     invalid_id = 100
@@ -77,6 +81,7 @@ def test_update_invalid_id():
 @pytest.mark.functional
 @pytest.mark.sanity
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.MINOR)
 def test_different_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -89,6 +94,7 @@ def test_different_id():
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
+@allure.severity(allure.severity_level.MINOR)
 def test_get_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -104,7 +110,6 @@ def test_get_schema():
     assert_that(response.status_code).is_equal_to(200)
     is_valid = validator_schema(output_data, response.as_dict[position])
     assert_that(is_valid[0], description=is_valid[1].errors).is_true()
-    
 
 
 

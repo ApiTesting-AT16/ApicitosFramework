@@ -1,6 +1,7 @@
 import os
 import json
 import pytest
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from helpers.login import Login
@@ -27,6 +28,7 @@ def preconditions():
 @pytest.mark.black_box
 @pytest.mark.sanity
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_update_media(preconditions):
 
     Login().login(USER, PASSWORD)

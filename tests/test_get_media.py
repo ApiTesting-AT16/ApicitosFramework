@@ -1,5 +1,6 @@
 import os
 import pytest
+import allure
 from helpers.login import Login
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
@@ -16,6 +17,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.black_box
 @pytest.mark.sanity
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_get_media():
     Login().login(USER, PASSWORD)
     crud_media = CrudMedia()

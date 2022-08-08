@@ -1,8 +1,9 @@
-{ "username": "Peru",
-  "name": "Peru",
-  "first_name": "Peru",
-  "last_name": "Peru",
-  "email": "Peru125@gmail.com",
+{
+  "username": "scorpionchestnutmuggy",
+  "name": "rust",
+  "first_name": "periwinkle",
+  "last_name": "amber",
+  "email": "boozy-lime-leopard433@gmail.com",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

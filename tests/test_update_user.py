@@ -1,7 +1,7 @@
 import os
 import json
 import random
-from pprint import pprint
+import allure
 from helpers.idslist import get_id_user_list
 import pytest
 from assertpy.assertpy import assert_that
@@ -27,7 +27,11 @@ def preconditions():
 
     return result
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_update_user(preconditions):
 
     file = open('./testdata/update_user/update_user.json', "r")
@@ -45,7 +49,11 @@ def test_update_user(preconditions):
     assert_that(data["roles"][0]).contains(input_data['roles'])
 
 
+@pytest.mark.sanity
+@pytest.mark.regression
+@pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_update_schema(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_user/update_user.json', "r")
@@ -64,7 +72,9 @@ def test_update_schema(preconditions):
     assert_that(is_valid, description=validator.errors).is_true()
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_token(preconditions):
 
     Login().login(USER, PASSWORD)
@@ -78,7 +88,9 @@ def test_update_invalid_token(preconditions):
     assert_that(response.status_code).is_equal_to(401)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_id():
 
     Login().login(USER, PASSWORD)
@@ -91,7 +103,9 @@ def test_update_invalid_id():
     assert_that(response.status_code).is_equal_to(404)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_email(preconditions):
 
     Login().login(USER, PASSWORD)
@@ -105,7 +119,9 @@ def test_update_invalid_email(preconditions):
     assert_that(response.status_code).is_equal_to(400)
 
 
+@pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.NORMAL)
 def test_empty(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_user/empty.json', "r")

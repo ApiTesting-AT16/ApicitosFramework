@@ -1,6 +1,7 @@
 import os
 import json
 import pytest
+import allure
 from assertpy.assertpy import assert_that
 from dotenv import load_dotenv
 from helpers.login import Login
@@ -16,7 +17,7 @@ PASSWORD = os.getenv('PASSWORD')
 
 @pytest.fixture(scope="module")
 def preconditions():
-    file = open('./testdata/create_comment.json', "r")
+    file = open('./testdata/update_comment/create_for_update.json', "r")
     input_data = json.loads(file.read())
     crud_users = CrudComment()
     response = crud_users.create_comment(URL, TOKEN, input_data)
@@ -27,6 +28,7 @@ def preconditions():
 @pytest.mark.regression
 @pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_valid_update(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
@@ -42,13 +44,14 @@ def test_valid_update(preconditions):
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @pytest.mark.sanity
+@allure.severity(allure.severity_level.CRITICAL)
 def test_data_sent(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     data = json.loads(preconditions.text)
-    id_comment = data["id"]
+    id_comment = data['id']
     response = crud_comment.update_comment(URL, TOKEN, input_data, id_comment)
     # Verify if data sent is the same
     data = json.loads(response.text)
@@ -60,6 +63,7 @@ def test_data_sent(preconditions):
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_update_status_default(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/status.json', "r")
@@ -76,6 +80,7 @@ def test_update_status_default(preconditions):
 @pytest.mark.black_box
 @pytest.mark.negative
 @pytest.mark.security
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_token(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
@@ -90,6 +95,7 @@ def test_update_invalid_token(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_id(preconditions):
     Login().login(USER, PASSWORD)
     invalid_id = 100
@@ -103,6 +109,7 @@ def test_update_invalid_id(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_post_id(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/invalid_post_id.json', "r")
@@ -118,6 +125,7 @@ def test_update_invalid_post_id(preconditions):
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.MINOR)
 def test_update_empty(preconditions):
     Login().login(USER, PASSWORD)
     input_data = ''
@@ -132,6 +140,7 @@ def test_update_empty(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@allure.severity(allure.severity_level.MINOR)
 def test_update_invalid_email(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/invalid_email.json', "r")
@@ -147,6 +156,7 @@ def test_update_invalid_email(preconditions):
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_valid_update_and_get(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
@@ -169,6 +179,7 @@ def test_valid_update_and_get(preconditions):
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
+@allure.severity(allure.severity_level.CRITICAL)
 def test_schema_of_update_comment(preconditions):
     Login().login(USER, PASSWORD)
     file = open('./testdata/update_comment/update_valid_comment.json', "r")

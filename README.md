@@ -15,8 +15,20 @@ To execute the framework needs: \
     ID_COMMENT -> id of comment created 
     ID_USER -> id of user created
     FOLDERFILE = './files/'
-5. Run the following command to run all test cases and get reports \
-   - py.test --alluredir=%allure_result_folder% ./tests
+5. Run the following command to run all test cases and view the reports in Allure \
+   - py.test --alluredir=general_reports ./tests
+   - allure serve general_reports (You need have installed Allure Framework in your OS)
 
-6. Run the following command to view the reports in Allure\
-   - allure serve %allure_result_folder% (You need have installed Allure Framework in your OS)
+6. Run the following command to run all acceptance tests cases \
+   - py.test --alluredir=acceptance_report ./tests -m acceptance
+   - allure serve acceptance_report
+   
+7.Run the following command to run all negative tests cases \
+   - py.test --alluredir=negative_report ./tests -m negative
+   - allure serve negative_report
+8.Run the following command to run all regression tests cases \
+   - py.test --alluredir=regression_report ./tests -m regression
+   - allure serve regression_report
+9.Run the following command to run all black_box tests cases \
+   - py.test --alluredir=black_box_report ./tests -m black_box
+   - allure serve black_box_report
