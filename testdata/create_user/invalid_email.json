@@ -1,14 +1,14 @@
 { "username": "ivan",
 <<<<<<< HEAD
-  "name": "silver",
-  "first_name": "sangria",
-  "last_name": "lilac",
+  "name": "olivine",
+  "first_name": "violet",
+  "last_name": "aqua",
 =======
-  "name": "cornflower",
-  "first_name": "coral",
-  "last_name": "sapphire",
+  "name": "lavender",
+  "first_name": "emerald",
+  "last_name": "teal",
 >>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "email": "alan72577@gmail",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

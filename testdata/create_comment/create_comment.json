@@ -1,10 +1,6 @@
 { "post": 1,
-  "author_name": "wrasse",
-  "author_email": "droopy-salmon-birman284@gmail.com",
-  "content": "lanky-orange-fly",
-  "status": "spam"
-  "author_name": "sara",
-  "author_email": "sara@gmail.com",
-  "content": "beady-jade-greyhound",
-  "status": "approved"
+  "author_name": "buffalo",
+  "author_email": "woozy-beige-manatee823@gmail.com",
+  "content": "dorky-cornflower-toucan",
+  "status": "hold"
 }

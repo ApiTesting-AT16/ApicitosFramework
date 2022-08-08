@@ -1,15 +1,15 @@
 { "username": "",
 <<<<<<< HEAD
-  "name": "cinnabar",
-  "first_name": "denim",
-  "last_name": "jade",
-  "email": "gloppy-aqua-mole715@gmail.com",
+  "name": "pink",
+  "first_name": "tan",
+  "last_name": "persimmon",
+  "email": "goopy-linen-bulldog169@gmail.com",
 =======
-  "name": "azure",
-  "first_name": "seashell",
-  "last_name": "teal",
-  "email": "chewy-orchid-mastiff312@gmail.com",
+  "name": "ivory",
+  "first_name": "goldenrod",
+  "last_name": "fuchsia",
+  "email": "sunny-olive-tuatara676@gmail.com",
 >>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "password": "1234",
-  "roles": "administrator"
+  "roles": "subscriber"
 }
