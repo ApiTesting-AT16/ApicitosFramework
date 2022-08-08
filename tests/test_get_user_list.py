@@ -21,6 +21,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Verify if response is 200 when is getting user successfully")
 def test_get_user():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
@@ -37,14 +38,14 @@ def test_get_user():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
-def test_get_invalid_token():
+@allure.description("Verify if response is 401 when we send a invalid token")
+def test_get_user_invalid_token():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, "TOKEN", input_data.get("orderby"), input_data.get("page"),
                                   input_data.get("per_page"))
-    # Error response
     assert_that(response.status_code).is_equal_to(401)
 
 
@@ -53,7 +54,8 @@ def test_get_invalid_token():
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
-def test_get_schema():
+@allure.description("Verify if schema of response is correctly when is getting user successfully")
+def test_get_user_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
     schema = open('./testdata/get_user/schema.json', "r")
@@ -63,7 +65,6 @@ def test_get_schema():
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), input_data.get("page"),
                                   input_data.get("per_page"))
     position = random.randint(0, int(input_data.get("per_page"))-1)
-    # Error response
     assert_that(response.status_code).is_equal_to(200)
     is_valid = validator_schema(output_data, response.as_dict[position])
     assert_that(is_valid[0], description=is_valid[1].errors).is_true()
@@ -72,7 +73,8 @@ def test_get_schema():
 @pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.NORMAL)
-def test_different_id():
+@allure.description("Verify that ID of users is different when is getting user successfully")
+def test_get_user_different_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
@@ -83,25 +85,25 @@ def test_different_id():
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
-def test_invalid_perpage():
+@allure.description("Verify that when we send a invalid Param Per_page send a response 400")
+def test_get_user_invalid_perpage():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), input_data.get("page"), "a")
-    # Successfully response
     assert_that(response.status_code).is_equal_to(400)
 
 
 @pytest.mark.black_box
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
-def test_invalid_page():
+@allure.description("Verify that when we send a invalid Param Page send a response 400")
+def test_get_user_invalid_page():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
     response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), "a",
                                   input_data.get("per_page"))
-    # Successfully response
     assert_that(response.status_code).is_equal_to(400)

@@ -22,6 +22,7 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.blackbox
 @pytest.mark.regression
 @allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Verify if response is 200 when is getting comments successfully")
 def test_get_list_comments():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -38,6 +39,7 @@ def test_get_list_comments():
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response contains the status approved")
 def test_get_status():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -54,6 +56,7 @@ def test_get_status():
 @pytest.mark.negative
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response is 401 when is created with an invalid authorization token")
 def test_get_invalid_token():
     #Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -69,6 +72,7 @@ def test_get_invalid_token():
 @pytest.mark.negative
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response is 404 when is getting a comment with an invalid ID")
 def test_update_invalid_id():
     Login().login(USER, PASSWORD)
     invalid_id = 100
@@ -82,6 +86,7 @@ def test_update_invalid_id():
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if all ID of comments are different")
 def test_different_id():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
@@ -95,6 +100,7 @@ def test_different_id():
 @pytest.mark.blackbox
 @pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response is valid comparing with the schema")
 def test_get_schema():
     Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")

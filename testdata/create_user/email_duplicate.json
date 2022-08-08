@@ -1,7 +1,13 @@
 { "username": "ivan",
+<<<<<<< HEAD
   "name": "salmon",
   "first_name": "sepia",
   "last_name": "fuchsia",
+=======
+  "name": "asparagus",
+  "first_name": "cyan",
+  "last_name": "ivory",
+>>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "email": "alan72577@gmail.com",
   "password": "1234",
   "roles": "subscriber"

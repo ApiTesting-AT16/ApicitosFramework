@@ -1,8 +1,15 @@
 {"username": "ComputaaaaROlin",
+<<<<<<< HEAD
   "name": "dandelion",
   "first_name": "salmon",
   "last_name": "rose",
   "email": "gamy-asparagus-uguisu404@gmail.com",
+=======
+  "name": "mauve",
+  "first_name": "goldenrod",
+  "last_name": "mauve",
+  "email": "droopy-auburn-koala167@gmail.com",
+>>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "password": "1234",
   "roles": "subscriber"
 }

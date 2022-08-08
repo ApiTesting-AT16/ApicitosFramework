@@ -16,8 +16,8 @@ To execute the framework needs: \
     ID_USER -> id of user created
     FOLDERFILE = './files/'
 5. Run the following command to run all test cases and view the reports in Allure \
-   - py.test --alluredir=general_reports ./tests
-   - allure serve general_reports (You need have installed Allure Framework in your OS)
+   - py.test --alluredir=general_report ./tests
+   - allure serve general_report (You need have installed Allure Framework in your OS)
 
 6. Run the following command to run all acceptance tests cases \
    - py.test --alluredir=acceptance_report ./tests -m acceptance
@@ -32,3 +32,6 @@ To execute the framework needs: \
 9.Run the following command to run all black_box tests cases \
    - py.test --alluredir=black_box_report ./tests -m black_box
    - allure serve black_box_report
+10.Run the following command to run all sanity tests cases \
+   - py.test --alluredir=sanity_report ./tests -m sanity
+   - allure serve sanity_report

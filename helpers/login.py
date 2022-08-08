@@ -1,4 +1,5 @@
 import os
+import allure
 import requests
 import fileinput
 from dotenv import load_dotenv
@@ -9,6 +10,7 @@ URL = os.getenv('BASE_URL')
 
 class Login:
     @staticmethod
+    @allure.step('Get Token')
     def login(username, password):
         url = "{}/wp-json/api/v1/token".format(URL)
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}

@@ -1,8 +1,15 @@
 { "username": "alan123",
+<<<<<<< HEAD
   "name": "yellow",
   "first_name": "aquamarine",
   "last_name": "black",
   "email": "snoopy-ochre-iguana955@gmail.com",
+=======
+  "name": "vermilion",
+  "first_name": "pink",
+  "last_name": "periwinkle",
+  "email": "wimpy-chestnut-abyssinian835@gmail.com",
+>>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "password": "1234",
   "roles": "administrator"
 }

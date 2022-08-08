@@ -1,7 +1,13 @@
 { "username": "cochis",
+<<<<<<< HEAD
   "name": "maroon",
   "first_name": "khaki",
   "last_name": "violet",
+=======
+  "name": "cinnamon",
+  "first_name": "buff",
+  "last_name": "magenta",
+>>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "email": "",
   "password": "1234",
   "roles": "administrator"

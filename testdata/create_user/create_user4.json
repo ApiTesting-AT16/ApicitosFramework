@@ -1,9 +1,17 @@
 {
+<<<<<<< HEAD
   "username": "cuscuspersimmonbeady",
   "name": "cerise",
   "first_name": "xanthic",
   "last_name": "asparagus",
   "email": "pokey-tan-cougar473@gmail.com",
+=======
+  "username": "snakerussetsurly",
+  "name": "smalt",
+  "first_name": "violet",
+  "last_name": "cobalt",
+  "email": "scanty-olivine-newt190@gmail.com",
+>>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
   "password": "1234",
   "roles": "subscriber"
 }
