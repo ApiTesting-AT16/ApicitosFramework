@@ -19,6 +19,7 @@ TOKEN = os.getenv('ACCESS_TOKEN')
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
 
+
 @pytest.fixture(scope="function")
 def preconditions():
     file = open('./testdata/get_user/get_user.json', "r")
@@ -26,6 +27,7 @@ def preconditions():
     result = get_id_user_list(input_data)
 
     return result
+
 
 @pytest.mark.sanity
 @pytest.mark.regression
@@ -62,7 +64,7 @@ def test_update_schema(preconditions):
     output_data = json.loads(schema.read())
     crud_user = CrudUser()
     data = preconditions
-    id_users = data[random.randint(1, len(data)-1)]
+    id_users = random.choice(data)
     response = crud_user.update_user(URL, TOKEN, input_data, id_users)
     # Error response
     assert_that(response.status_code).is_equal_to(200)
