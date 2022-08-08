@@ -40,6 +40,7 @@ def test_create_status():
     response = crud_comment.create_comment(URL, TOKEN, input_data)
     # See if status change to approved when is filled with invalid data
     data = json.loads(response.text)
+    print (data)
     assert_that(data["status"]).contains('approved')
 
 
@@ -47,8 +48,10 @@ def test_create_status():
 @pytest.mark.blackbox
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment2.json', "r")
+    input_data = json.loads(file.read())
     crud_comment = CrudComment()
-    response = crud_comment.get_comment(URL, "TOKEN")
+    response = crud_comment.create_comment(URL, "TOKEN", input_data)
     # Error response
     assert_that(response.status_code).is_equal_to(401)
 

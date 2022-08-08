@@ -52,7 +52,7 @@ def test_get_status():
 @pytest.mark.negative
 @pytest.mark.blackbox
 def test_get_invalid_token():
-    Login().login(USER, PASSWORD)
+    #Login().login(USER, PASSWORD)
     file = open('./testdata/get_comment/get_comment.json', "r")
     crud_comment = CrudComment()
     input_data = json.loads(file.read())
