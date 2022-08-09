@@ -21,7 +21,12 @@ PASSWORD = os.getenv('PASSWORD')
 @pytest.mark.blackbox
 @pytest.mark.regression
 @allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Verify if response is 201 when is created the comment successfully")
 def test_create_comment():
+    Comment_Data().aleatory_author_email('create_comment/create_comment.json')
+    Comment_Data().aleatory_author_name('create_comment/create_comment.json')
+    Comment_Data().aleatory_content('create_comment/create_comment.json')
+    Comment_Data().aleatory_status('create_comment/create_comment.json')
     Login().login(USER, PASSWORD)
     Comment_Data().aleatory_content('create_comment/create_comment.json')
     file = open('./testdata/create_comment/create_comment.json', "r")
@@ -37,24 +42,28 @@ def test_create_comment():
 @pytest.mark.blackbox
 @pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if status is approved when is created the comment successfully")
 def test_create_status():
+    Comment_Data().aleatory_author_email('create_comment/create_comment3.json')
+    Comment_Data().aleatory_author_name('create_comment/create_comment3.json')
+    Comment_Data().aleatory_content('create_comment/create_comment3.json')
     Login().login(USER, PASSWORD)
-    Comment_Data().aleatory_content('create_comment/create_comment2.json')
-    file = open('./testdata/create_comment/create_comment2.json', "r")
+    file = open('./testdata/create_comment/create_comment3.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.create_comment(URL, TOKEN, input_data)
     # See if status change to approved when is filled with invalid data
     data = json.loads(response.text)
+    print (data)
     assert_that(data["status"]).contains('approved')
 
 
 @pytest.mark.negative
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response is 401 when is created with an invalid authorization token")
 def test_get_invalid_token():
     Login().login(USER, PASSWORD)
-    Comment_Data().aleatory_content('create_comment/create_comment2.json')
     file = open('./testdata/create_comment/create_comment2.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
@@ -65,6 +74,8 @@ def test_get_invalid_token():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("Verify if response is 409 when the comment created is duplicated")
 def test_create_duplicate_comment():
     Login().login(USER, PASSWORD)
     file = open('./testdata/create_comment/create_comment.json', "r")
@@ -78,9 +89,10 @@ def test_create_duplicate_comment():
 @pytest.mark.negative
 @pytest.mark.blackbox
 @allure.severity(allure.severity_level.MINOR)
-def test_update_invalid_email():
+@allure.description("Verify if response is 400 when the email data is invalid")
+def test_create_invalid_email():
     Login().login(USER, PASSWORD)
-    file = open('./testdata/update_comment/invalid_email.json', "r")
+    file = open('./testdata/create_comment/invalid_email.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     response = crud_comment.create_comment(URL, TOKEN, input_data)
@@ -93,10 +105,14 @@ def test_update_invalid_email():
 @pytest.mark.blackbox
 @pytest.mark.regression
 @allure.severity(allure.severity_level.NORMAL)
+@allure.description("Verify if response is valid comparing with the schema")
 def test_get_schema():
+    Comment_Data().aleatory_author_email('create_comment/create_comment.json')
+    Comment_Data().aleatory_author_name('create_comment/create_comment.json')
+    Comment_Data().aleatory_content('create_comment/create_comment.json')
+    Comment_Data().aleatory_status('create_comment/create_comment.json')
     Login().login(USER, PASSWORD)
-    Comment_Data().aleatory_content('create_comment/create_comment2.json')
-    file = open('./testdata/create_comment/create_comment2.json', "r")
+    file = open('./testdata/create_comment/create_comment.json', "r")
     schema = open('./testdata/create_comment/schema.json', "r")
     input_data = json.loads(file.read())
     output_data = json.loads(schema.read())
