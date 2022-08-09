@@ -34,7 +34,7 @@ def test_create_user():
     file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
-    response = crud_user.create_user(URL, "TOKEN", input_data)
+    response = crud_user.create_user(URL, TOKEN, input_data)
     # Successfully response
     assert_that(response.status_code).is_equal_to(201)
     # See if data sent is the same
