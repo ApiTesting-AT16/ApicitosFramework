@@ -1,8 +1,9 @@
-{ "username": "alan123",
-  "name": "vermilion",
-  "first_name": "pink",
-  "last_name": "periwinkle",
-  "email": "wimpy-chestnut-abyssinian835@gmail.com",
+{
+  "username": "computa",
+  "name": "cerulean",
+  "first_name": "sapphire",
+  "last_name": "cinnamon",
+  "email": "slaphappy-ecru-woodpecker512@gmail.com",
   "password": "1234",
   "roles": "administrator"
 }

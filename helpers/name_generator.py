@@ -1,7 +1,14 @@
+import json
+import os
 import namegenerator
 import allure
 import fileinput
 import random
+from dotenv import load_dotenv
+from crud_users import CrudUser
+load_dotenv()
+URL = os.getenv('BASE_URL')
+TOKEN = os.getenv('ACCESS_TOKEN')
 
 
 class User_Data:
@@ -17,6 +24,7 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change email'
 
     @staticmethod
@@ -29,6 +37,7 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change username'
 
     @staticmethod
@@ -41,6 +50,7 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change name'
 
     @staticmethod
@@ -53,6 +63,7 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change first_name'
 
     @staticmethod
@@ -65,6 +76,7 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change last_name'
 
     @staticmethod
@@ -78,7 +90,52 @@ class User_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change role'
+
+    @staticmethod
+    @allure.step('Generate duplicate user')
+    def aleatory_duplicate_username(load):
+        i = 1
+        lenpage = 1
+        idslist = []
+        while lenpage >= 1:
+            crud_user = CrudUser()
+            response = crud_user.get_user(URL, TOKEN, "id", i, 1)
+            data = json.loads(response.text)
+            lenpage = len(data)
+            if lenpage == 0:
+                pass
+            else:
+                idslist.append(data[0].get("slug"))
+            i += 1
+        username = random.choice(idslist)
+        for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
+            if line.startswith(f'  "username":'):
+                new_line = line.replace(line, f'  "username": "{username}",')
+                print(new_line)
+            else:
+                print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
+        return 'change username'
+
+    @staticmethod
+    @allure.step('Generate duplicate email')
+    def aleatory_duplicate_email(load, duplicate):
+        for line in fileinput.FileInput(f"./testdata/{duplicate}", inplace=1):
+            if line.startswith(f'  "email":'):
+                email_line = line
+                print(line, end='')
+            else:
+                print(line, end='')
+        for line in fileinput.FileInput(f"./testdata/{load}", inplace=1):
+            if line.startswith(f'  "email":'):
+                new_line = line.replace(line, email_line)
+                print(new_line, end='')
+            else:
+                print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
+        return 'change email'
 
 
 class Comment_Data:
@@ -94,6 +151,7 @@ class Comment_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change author_email'
 
     @staticmethod
@@ -106,6 +164,7 @@ class Comment_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change author_name'
 
     @staticmethod
@@ -118,6 +177,7 @@ class Comment_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change content'
 
     @staticmethod
@@ -131,4 +191,5 @@ class Comment_Data:
                 print(new_line)
             else:
                 print(line, end='')
+        allure.attach(str(new_line), 'Result', allure.attachment_type.TEXT)
         return 'change status'
