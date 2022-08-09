@@ -27,11 +27,13 @@ jobs:
         echo ACCESS_TOKEN=$ACCESS_TOKEN >> .env
         echo USER=$USER >> .env
         echo PASSWORD=$PASSWORD >> .env
+        pwd
+        cat .env
 
-    - name: Execute Test Cases
+    - name: Generate Report
       run: |
         python3 -m py.test --alluredir=general_report ./tests
 
-    - name: View Reports
+    - name: View Report
       run: |
         python3 -m allure serve general_report
