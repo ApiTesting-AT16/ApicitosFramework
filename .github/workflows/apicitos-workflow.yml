@@ -6,6 +6,7 @@ env:
   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
   USER: ${{ secrets.USER }}
   PASSWORD: ${{ secrets.PASSWORD }}
+  FOLDERFILE: ${{ secrets.FOLDERFILE }}
 
 jobs:
   build:
@@ -27,6 +28,7 @@ jobs:
         echo ACCESS_TOKEN=$ACCESS_TOKEN >> .env
         echo USER=$USER >> .env
         echo PASSWORD=$PASSWORD >> .env
+        echo FOLDERFILE=$FOLDERFILE >> .env
         pwd
         cat .env
 
