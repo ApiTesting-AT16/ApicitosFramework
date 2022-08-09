@@ -34,7 +34,7 @@ def test_create_user():
     file = open('./testdata/create_user/create_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
-    response = crud_user.create_user(URL, TOKEN, input_data)
+    response = crud_user.create_user(URL, "TOKEN", input_data)
     # Successfully response
     assert_that(response.status_code).is_equal_to(201)
     # See if data sent is the same
@@ -54,6 +54,7 @@ def test_create_user():
 def test_create_user_duplicate_email():
     Login().login(USER, PASSWORD)
     User_Data().aleatory_username('create_user/email_duplicate.json')
+    User_Data().aleatory_duplicate_email('create_user/email_duplicate.json', 'create_user/create_user2.json')
     User_Data().aleatory_name('create_user/email_duplicate.json')
     User_Data().aleatory_first_name('create_user/email_duplicate.json')
     User_Data().aleatory_last_name('create_user/email_duplicate.json')
@@ -72,6 +73,7 @@ def test_create_user_duplicate_email():
 @allure.description("Verify the response is 500 when is creating user with an existing Username ")
 def test_create_user_duplicate_username():
     Login().login(USER, PASSWORD)
+    User_Data().aleatory_duplicate_username('create_user/username_duplicate.json')
     User_Data().aleatory_email('create_user/username_duplicate.json')
     User_Data().aleatory_name('create_user/username_duplicate.json')
     User_Data().aleatory_first_name('create_user/username_duplicate.json')

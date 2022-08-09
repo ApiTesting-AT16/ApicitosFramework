@@ -1,3 +1,4 @@
+import allure
 from utils.requestresponse import APIresponses
 from dotenv import load_dotenv
 import os
@@ -8,17 +9,13 @@ FOLDER = os.getenv('FOLDERFILE')
 class CrudMedia:
 
     def get_media(self, base_url, token):
-
         url = f'{base_url}/wp-json/wp/v2/media'
-
         headers = {"Authorization": token}
         response = APIresponses().get(url, headers)
-
         return response
 
     def create_media(self, base_url, token, input_data, file):
         url = f'{base_url}/wp-json/wp/v2/media'
-
         payload = input_data
         files = [
             ('file', (
