@@ -1,14 +1,9 @@
-{ "username": "cochis",
-<<<<<<< HEAD
-  "name": "asparagus",
-  "first_name": "russet",
-  "last_name": "teal",
-=======
-  "name": "brass",
-  "first_name": "cerise",
-  "last_name": "tan",
->>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
+{
+  "username": "javaneselimepasty",
+  "name": "magnolia",
+  "first_name": "aqua",
+  "last_name": "corn",
   "email": "",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

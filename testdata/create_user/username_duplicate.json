@@ -1,15 +1,9 @@
-{ "username": "alan123",
-<<<<<<< HEAD
-  "name": "pumpkin",
-  "first_name": "burgundy",
-  "last_name": "flax",
-  "email": "clammy-charcoal-zonkey87@gmail.com",
-=======
-  "name": "mauve",
-  "first_name": "charcoal",
-  "last_name": "cyan",
-  "email": "flimsy-mustard-akbash521@gmail.com",
->>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
+{
+  "username": "dormouselemonscummy",
+  "name": "carmine",
+  "first_name": "alizarin",
+  "last_name": "indigo",
+  "email": "snazzy-brass-jaguar548@gmail.com",
   "password": "1234",
   "roles": "subscriber"
 }

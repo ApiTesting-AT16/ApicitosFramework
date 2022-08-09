@@ -1,15 +1,9 @@
-{ "username": "",
-<<<<<<< HEAD
-  "name": "pink",
-  "first_name": "tan",
-  "last_name": "persimmon",
-  "email": "goopy-linen-bulldog169@gmail.com",
-=======
-  "name": "ivory",
-  "first_name": "goldenrod",
-  "last_name": "fuchsia",
-  "email": "sunny-olive-tuatara676@gmail.com",
->>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
+{
+  "username": "",
+  "name": "ultramarine",
+  "first_name": "champagne",
+  "last_name": "sangria",
+  "email": "homely-tomato-giraffe603@gmail.com",
   "password": "1234",
   "roles": "subscriber"
 }

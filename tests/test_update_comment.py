@@ -37,7 +37,7 @@ def test_valid_update_comment(preconditions):
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
     data = json.loads(preconditions.text)
-    id_comment = data["id"]
+    id_comment = data['id']
     response = crud_comment.update_comment(URL, TOKEN, input_data, id_comment)
     assert_that(response.status_code).is_equal_to(200)
 

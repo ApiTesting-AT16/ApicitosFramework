@@ -1,15 +1,9 @@
-{"username": "ComputaaaaROlin",
-<<<<<<< HEAD
-  "name": "eggplant",
-  "first_name": "seashell",
-  "last_name": "mustard",
-  "email": "snazzy-linen-beetle348@gmail.com",
-=======
-  "name": "blue",
-  "first_name": "pear",
-  "last_name": "denim",
-  "email": "frumpy-lilac-flounder61@gmail.com",
->>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
+{
+  "username": "tarantulacharcoalstinky",
+  "name": "lilac",
+  "first_name": "fuchsia",
+  "last_name": "cobalt",
+  "email": "shaggy-orange-spitz910@gmail.com",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

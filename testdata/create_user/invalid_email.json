@@ -1,13 +1,8 @@
-{ "username": "ivan",
-<<<<<<< HEAD
-  "name": "olivine",
-  "first_name": "violet",
-  "last_name": "aqua",
-=======
-  "name": "lavender",
-  "first_name": "emerald",
-  "last_name": "teal",
->>>>>>> b3c87c05e517d65971fb503065227fa530b4097a
+{
+  "username": "birdviridiansloppy",
+  "name": "emerald",
+  "first_name": "amber",
+  "last_name": "orchid",
   "email": "alan72577@gmail",
   "password": "1234",
   "roles": "administrator"
