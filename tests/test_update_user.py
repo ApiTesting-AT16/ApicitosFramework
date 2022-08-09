@@ -110,7 +110,7 @@ def test_update_users_invalid_token(preconditions):
 @allure.description("Validate the response is 404 when is added with a invalid id")
 def test_update_users_invalid_id():
     Login().login(USER, PASSWORD)
-    invalid_id = 100
+    invalid_id = 1000
     file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
