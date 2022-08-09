@@ -1,8 +1,9 @@
-{ "username": "cochis",
-  "name": "copper",
-  "first_name": "cyan",
-  "last_name": "blue",
+{
+  "username": "javaneselimepasty",
+  "name": "magnolia",
+  "first_name": "aqua",
+  "last_name": "corn",
   "email": "",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

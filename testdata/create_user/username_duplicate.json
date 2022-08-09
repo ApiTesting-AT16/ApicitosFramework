@@ -1,8 +1,9 @@
-{ "username": "alan123",
-  "name": "brown",
-  "first_name": "chartreuse",
-  "last_name": "russet",
-  "email": "messy-chestnut-balinese303@gmail.com",
+{
+  "username": "dormouselemonscummy",
+  "name": "carmine",
+  "first_name": "alizarin",
+  "last_name": "indigo",
+  "email": "snazzy-brass-jaguar548@gmail.com",
   "password": "1234",
-  "roles": "administrator"
+  "roles": "subscriber"
 }
