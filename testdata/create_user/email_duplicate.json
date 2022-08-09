@@ -1,8 +1,8 @@
 { "username": "ivan",
-  "name": "chocolate",
-  "first_name": "wheat",
-  "last_name": "amaranth",
+  "name": "grey",
+  "first_name": "beige",
+  "last_name": "pink",
   "email": "alan72577@gmail.com",
   "password": "1234",
-  "roles": "administrator"
+  "roles": "subscriber"
 }
