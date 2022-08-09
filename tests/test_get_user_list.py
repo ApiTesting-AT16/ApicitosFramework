@@ -35,7 +35,8 @@ def test_get_user():
     data = json.loads(response.text)
     assert_that(len(data) <= input_data.get("per_page")).is_true()
 
-@pytest.mark.black_box
+
+@pytest.mark.regression
 @pytest.mark.negative
 @pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
@@ -52,7 +53,6 @@ def test_get_user_invalid_token():
 
 @pytest.mark.sanity
 @pytest.mark.regression
-@pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify if schema of response is correctly when is getting user successfully")
@@ -73,7 +73,8 @@ def test_get_user_schema():
 
 @pytest.mark.black_box
 @pytest.mark.acceptance
-@allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.regression
+@allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify that ID of users is different when is getting user successfully")
 def test_get_user_different_id():
     Login().login(USER, PASSWORD)
@@ -98,6 +99,7 @@ def test_get_user_invalid_perpage():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify that when we send a invalid Param Page send a response 400")
 def test_get_user_invalid_page():

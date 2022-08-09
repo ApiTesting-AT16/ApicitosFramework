@@ -100,7 +100,7 @@ def test_update_comment_with_invalid_token(preconditions):
 @allure.description("Validate the response is 404 when is added with a invalid id")
 def test_update_comment_with_invalid_id(preconditions):
     Login().login(USER, PASSWORD)
-    invalid_id = 100
+    invalid_id = 1000
     file = open('./testdata/update_comment/update_valid_comment.json', "r")
     input_data = json.loads(file.read())
     crud_comment = CrudComment()
@@ -177,7 +177,7 @@ def test_valid_update_and_get_comment(preconditions):
 
 @pytest.mark.regression
 @pytest.mark.sanity
-@pytest.mark.black_box
+@pytest.mark.security
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify if response is valid comparing with the schema")
