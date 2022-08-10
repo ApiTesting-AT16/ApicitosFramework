@@ -59,7 +59,6 @@ def test_update_user_success(preconditions):
 
 @pytest.mark.sanity
 @pytest.mark.regression
-@pytest.mark.black_box
 @pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify schema of users update is correct")
@@ -88,6 +87,8 @@ def test_update_schema_users(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.security
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 401 when is added with an invalid authorization token")
 def test_update_users_invalid_token(preconditions):
@@ -104,11 +105,12 @@ def test_update_users_invalid_token(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Validate the response is 404 when is added with a invalid id")
 def test_update_users_invalid_id():
     Login().login(USER, PASSWORD)
-    invalid_id = 100
+    invalid_id = 1000
     file = open('./testdata/update_user/update_user.json', "r")
     input_data = json.loads(file.read())
     crud_user = CrudUser()
@@ -139,6 +141,7 @@ def test_update_users_invalid_email(preconditions):
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Verify if the data is empty when send the missing information")
 def test_update_users_empty_data(preconditions):

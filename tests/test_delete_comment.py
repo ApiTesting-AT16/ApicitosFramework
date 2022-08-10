@@ -25,7 +25,7 @@ def preconditions():
 
 @pytest.mark.regression
 @pytest.mark.blackbox
-@pytest.mark.negative
+@pytest.mark.acceptance
 @allure.severity(allure.severity_level.CRITICAL)
 def test_delete_comment(preconditions):
     Login().login(USER, PASSWORD)

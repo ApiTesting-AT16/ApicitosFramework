@@ -1,8 +1,8 @@
 {
-  "name": "platinum",
-  "first_name": "dandelion",
-  "last_name": "zucchini",
+  "name": "pumpkin",
+  "first_name": "myrtle",
+  "last_name": "olivine",
   "email": "alan72577@gmail",
   "password": "1234",
-  "roles": "subscriber"
+  "roles": "administrator"
 }

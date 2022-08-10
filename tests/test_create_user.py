@@ -47,7 +47,8 @@ def test_create_user():
     assert_that(data["roles"][0]).contains(input_data['roles'])
 
 
-@pytest.mark.black_box
+@pytest.mark.regression
+@pytest.mark.security
 @pytest.mark.negative
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify response is 401 when we send a invalid token")
@@ -69,6 +70,7 @@ def test_create_user_invalid_token():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 400 when we send a invalid email")
 def test_create_user_invalid_email():
@@ -88,7 +90,8 @@ def test_create_user_invalid_email():
 
 @pytest.mark.black_box
 @pytest.mark.acceptance
-@allure.severity(allure.severity_level.MINOR)
+@pytest.mark.regression
+@allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify that the ID is major or equal of the number of users")
 def test_create_user_number_id():
     Login().login(USER, PASSWORD)
@@ -116,7 +119,8 @@ def test_create_user_number_id():
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
-@allure.severity(allure.severity_level.MINOR)
+@pytest.mark.regression
+@allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify the number of users add 1 when create a new user")
 def test_create_user_number_post():
     Login().login(USER, PASSWORD)
@@ -143,8 +147,10 @@ def test_create_user_number_post():
     # Successfully response
     assert_that(Lin+1 == Lout).is_true()
 
+
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 500 when is creating user with an existing email ")
 def test_create_user_duplicate_email():
@@ -165,6 +171,7 @@ def test_create_user_duplicate_email():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 500 when is creating user with an existing Username ")
 def test_create_user_duplicate_username():
@@ -183,7 +190,6 @@ def test_create_user_duplicate_username():
     assert_that(response.status_code).is_equal_to(500)
 
 
-@pytest.mark.regression
 @pytest.mark.sanity
 @pytest.mark.black_box
 @pytest.mark.acceptance
@@ -212,6 +218,7 @@ def test_create_user_schema():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 400 when send a empty username")
 def test_create_user_empty_username():
@@ -231,6 +238,7 @@ def test_create_user_empty_username():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 400 when send a empty email")
 def test_create_user_empty_email():
@@ -250,6 +258,7 @@ def test_create_user_empty_email():
 
 @pytest.mark.black_box
 @pytest.mark.negative
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify the response is 400 when send a empty data")
 def test_create_user_empty():
@@ -262,4 +271,3 @@ def test_create_user_empty():
     response = crud_user.create_user(URL, TOKEN, input_data)
     # Error response
     assert_that(response.status_code).is_equal_to(400)
-

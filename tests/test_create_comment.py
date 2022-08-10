@@ -37,11 +37,26 @@ def test_create_comment():
     assert_that(response.status_code).is_equal_to(201)
 
 
+@pytest.mark.negative
+@pytest.mark.blackbox
+@pytest.mark.regression
+@allure.severity(allure.severity_level.MINOR)
+@allure.description("Verify if response is 409 when the comment created is duplicated")
+def test_create_duplicate_comment():
+    Login().login(USER, PASSWORD)
+    file = open('./testdata/create_comment/create_comment.json', "r")
+    input_data = json.loads(file.read())
+    crud_users = CrudComment()
+    response = crud_users.create_comment(URL, TOKEN, input_data)
+    print(response)
+    assert_that(response.status_code).is_equal_to(409)
+
+
 @pytest.mark.acceptance
 @pytest.mark.sanity
 @pytest.mark.blackbox
 @pytest.mark.regression
-@allure.severity(allure.severity_level.MINOR)
+@allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify if status is approved when is created the comment successfully")
 def test_create_status():
     Comment_Data().aleatory_author_email('create_comment/create_comment3.json')
@@ -58,8 +73,9 @@ def test_create_status():
     assert_that(data["status"]).contains('approved')
 
 
+@pytest.mark.regression
 @pytest.mark.negative
-@pytest.mark.blackbox
+@pytest.mark.security
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify if response is 401 when is created with an invalid authorization token")
 def test_get_invalid_token():
@@ -74,20 +90,7 @@ def test_get_invalid_token():
 
 @pytest.mark.negative
 @pytest.mark.blackbox
-@allure.severity(allure.severity_level.NORMAL)
-@allure.description("Verify if response is 409 when the comment created is duplicated")
-def test_create_duplicate_comment():
-    Login().login(USER, PASSWORD)
-    file = open('./testdata/create_comment/create_comment.json', "r")
-    input_data = json.loads(file.read())
-    crud_users = CrudComment()
-    response = crud_users.create_comment(URL, TOKEN, input_data)
-    print(response)
-    assert_that(response.status_code).is_equal_to(409)
-
-
-@pytest.mark.negative
-@pytest.mark.blackbox
+@pytest.mark.regression
 @allure.severity(allure.severity_level.MINOR)
 @allure.description("Verify if response is 400 when the email data is invalid")
 def test_create_invalid_email():
@@ -102,8 +105,6 @@ def test_create_invalid_email():
 
 @pytest.mark.acceptance
 @pytest.mark.sanity
-@pytest.mark.blackbox
-@pytest.mark.regression
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Verify if response is valid comparing with the schema")
 def test_get_schema():
