@@ -26,12 +26,15 @@ To execute the framework needs: \
 7.Run the following command to run all negative tests cases \
    - py.test --alluredir=negative_report ./tests -m negative
    - allure serve negative_report
+
 8.Run the following command to run all regression tests cases \
    - py.test --alluredir=regression_report ./tests -m regression
    - allure serve regression_report
+
 9.Run the following command to run all black_box tests cases \
    - py.test --alluredir=black_box_report ./tests -m black_box
    - allure serve black_box_report
+
 10.Run the following command to run all sanity tests cases \
    - py.test --alluredir=sanity_report ./tests -m sanity
    - allure serve sanity_report
