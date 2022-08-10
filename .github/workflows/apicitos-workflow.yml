@@ -1,0 +1,39 @@
+name: Build at16-apicitos
+
+on: [push]
+env:
+  BASE_URL: ${{ secrets.BASE_URL }}
+  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  USER: ${{ secrets.USER }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+
+jobs:
+  build:
+    runs-on: apicitos
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install libraries
+      run: | 
+        pip3 install -r requirements.txt
+
+    - name: Create .env file
+      run: |
+        touch .env
+        echo BASE_URL=$BASE_URL >> .env
+        echo ACCESS_TOKEN=$ACCESS_TOKEN >> .env
+        echo USER=$USER >> .env
+        echo PASSWORD=$PASSWORD >> .env
+        pwd
+        cat .env
+
+    - name: Generate Report
+      run: |
+        python3 -m py.test --alluredir=general_report ./tests
+
+    - name: View Report
+      run: |
+        python3 -m allure serve general_report

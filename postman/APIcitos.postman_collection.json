@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "4bbb4be8-8e66-4be2-9f7c-9bbcb2e0a27f",
+		"name": "APIcitos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "IjoxODE3Njc5NzQyfQ.XzL_s-zAsTd_UUXrfPlkT8KgqP9H0kXfyIzdQ8oLzp8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/users?orderby=id&page=1&per_page=8",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"users"
+							],
+							"query": [
+								{
+									"key": "orderby",
+									"value": "id"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY1OTEzNTQ2NywiZXhwIjoxODE2ODE1NDY3fQ.wNWbvVHpnHfu_0BLmfYI2Zgq1oitQsHrB78nMyR3szU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Roger54",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Roger",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Roger",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Castro",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "rogelio72577@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/users",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload user",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY1OTM3MDMwNiwiZXhwIjoxODE3MDUwMzA2fQ.dHLJ9pMlzWMJF76tBF3qfz1qAuAE1VFXvC25aCAkoi0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Roger",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Roger",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Rivas",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "rogelio72@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "Jala6",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "9",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/users/9",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"users",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/users/3?reassign=1&force=true",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"users",
+								"3"
+							],
+							"query": [
+								{
+									"key": "reassign",
+									"value": "1"
+								},
+								{
+									"key": "force",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "get comments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY1OTU3Njk4MSwiZXhwIjoxODE3MjU2OTgxfQ.h0BHe04Jw8F96ApNtbMlgrn6IpkhlgNIQ1dUkb7_vO4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/comments?orderby=id&page=1&per_page=10",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "orderby",
+									"value": "id"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY2MDA2MTc1NSwiZXhwIjoxODE3NzQxNzU1fQ.lH3S8LPKJlVDa8buc2eY-5foA0I8B0fjnkqtjis9FPQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "comment probed second time kjsciksjnvkjdnvkjcn ksjndkj dnvkjdnfkjndkfjvnkjdnvkjsdnvakjsndvkjasnvkjanvskjav final",
+									"type": "default"
+								},
+								{
+									"key": "author_name",
+									"value": "Ivan",
+									"type": "default"
+								},
+								{
+									"key": "author_email",
+									"value": "admin@root.com",
+									"type": "default"
+								},
+								{
+									"key": "post",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "status",
+									"value": "approved",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/comments",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "first_name",
+									"value": "Alex",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "Castro",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "alexander72577@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "Jala3",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "Suscriber",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/apicitos/wp-json/wp/v2/comments/2",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apicitos",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJJdmFuIExhem8iLCJpYXQiOjE2NTgyNDU1ODYsImV4cCI6MTgxNTkyNTU4Nn0.d0wxY_CzVDBJj-VG8UhCgho1mGZ3H3ydjDimm8ztjkU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/apitest/wp-json/wp/v2/comments/3",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"apitest",
+								"wp-json",
+								"wp",
+								"v2",
+								"comments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jwt_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "apicitos",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/apicitos/wp-json/api/v1/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apicitos",
+						"wp-json",
+						"api",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

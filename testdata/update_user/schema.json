@@ -1,0 +1,59 @@
+{
+    "id": {
+      "type": "integer"
+    },
+    "username": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "locale": {
+      "type": "string"
+    },
+    "nickname": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "list"
+    },
+    "registered_date": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "dict"
+    },
+    "extra_capabilities": {
+      "type": "dict"
+    },
+    "avatar_urls": {
+      "type": "dict"
+    },
+    "meta": {
+      "type": "list"
+    },
+    "_links": {
+      "type": "dict"
+    }
+  }

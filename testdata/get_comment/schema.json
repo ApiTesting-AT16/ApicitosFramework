@@ -1,0 +1,47 @@
+{
+    "id": {
+      "type": "integer"
+    },
+    "post": {
+      "type": "integer"
+    },
+    "parent": {
+      "type": "integer"
+    },
+    "author": {
+      "type": "integer"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_url": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "date_gmt": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dict"
+    },
+    "link": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "author_avatar_urls": {
+      "type": "dict"
+    },
+    "meta": {
+      "type": "list"
+    },
+    "_links": {
+      "type": "dict"
+    }
+  }
