@@ -4,7 +4,8 @@ import requests
 from assertpy import assert_that
 from utils.custom_logger import CustomLogger
 
-LOGGER = CustomLogger(__name__)
+LOGGER = CustomLogger()
+
 
 class RequestsManager:
     def send_request(self, http_method, endpoint_route, payload=None, **kwargs):
