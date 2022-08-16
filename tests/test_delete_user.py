@@ -7,6 +7,7 @@ from helpers.login import Login
 from dotenv import load_dotenv
 from crud_users import CrudUser
 from helpers.name_generator import User_Data
+from utils.request_manager import RequestsManager
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
@@ -25,8 +26,8 @@ def preconditions():
     User_Data().aleatory_roles('delete_user/create_user.json')
     file = open('./testdata/delete_user/create_user.json', "r")
     input_data = json.loads(file.read())
-    crud_users = CrudUser()
-    response = crud_users.create_user(URL, TOKEN, input_data)
+    request = RequestsManager()
+    response = request.send_request(URL, TOKEN, input_data)
     return response
 
 
@@ -41,6 +42,7 @@ def test_delete_user(preconditions):
     crud_user = CrudUser()
     data = json.loads(preconditions.text)
     id_user = data["id"]
-    response = crud_user.delete_user(URL, TOKEN, id_user, query_param)
+    request = RequestsManager()
+    response = request.send_request('delete', TOKEN, id_user, query_param)
     # Successfully response
     assert_that(response.status_code).is_equal_to(200)
