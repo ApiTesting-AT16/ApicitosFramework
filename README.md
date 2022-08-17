@@ -1,40 +1,20 @@
-# Apicitos
-Tests of the CRUD of comments and users endpoints of WordPress
-To execute the framework needs: \
-1.Install WordPress \
-2.Install the following plugins:\
-    - WordPress REST API Authentication\
-    - WP REST API Controller\
-3.Activate the installed plugins \
-4.Create a file .env in root project with the following environment variables must be set with the required data:
+# Introduction 
+TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
-    BASE_URL -> The url of your local wordpress e.g. BASE_URL = 'http://localhost/apicitos'
-    USER-> username registered in your local wordpress e.g. USER = 'apicitos'
-    PASSWORD -> password registered in your local wordpress PASSWORD = '1234'
-    ACCESS_TOKEN -> Copy the authorization token generate with the pluggin WordPress REST API Authentication e.g. ACCESS_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey...'
-    ID_COMMENT -> id of comment created 
-    ID_USER -> id of user created
-    FOLDERFILE = './files/'
-5. Run the following command to run all test cases and view the reports in Allure \
-   - py.test --alluredir=general_report ./tests
-   - allure serve general_report (You need have installed Allure Framework in your OS)
+# Getting Started
+TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
+1.	Installation process
+2.	Software dependencies
+3.	Latest releases
+4.	API references
 
-6. Run the following command to run all acceptance tests cases \
-   - py.test --alluredir=acceptance_report ./tests -m acceptance
-   - allure serve acceptance_report
-   
-7.Run the following command to run all negative tests cases \
-   - py.test --alluredir=negative_report ./tests -m negative
-   - allure serve negative_report
+# Build and Test
+TODO: Describe and show how to build your code and run the tests. 
 
-8.Run the following command to run all regression tests cases \
-   - py.test --alluredir=regression_report ./tests -m regression
-   - allure serve regression_report
+# Contribute
+TODO: Explain how other users and developers can contribute to make your code better. 
 
-9.Run the following command to run all black_box tests cases \
-   - py.test --alluredir=black_box_report ./tests -m black_box
-   - allure serve black_box_report
-
-10.Run the following command to run all sanity tests cases \
-   - py.test --alluredir=sanity_report ./tests -m sanity
-   - allure serve sanity_report
+If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
+- [ASP.NET Core](https://github.com/aspnet/Home)
+- [Visual Studio Code](https://github.com/Microsoft/vscode)
+- [Chakra Core](https://github.com/Microsoft/ChakraCore)
