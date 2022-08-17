@@ -8,7 +8,9 @@ from crud_comment import CrudComment
 from helpers.login import Login
 from helpers.idslist import get_id_comment_list
 from utils.schema_validator import validator_schema
+from utils.custom_logger import CustomLogger
 
+LOGGER = CustomLogger()
 
 load_dotenv()
 URL = os.getenv('BASE_URL')
@@ -40,15 +42,15 @@ def test_get_list_comments():
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify if response contains the status approved")
 def test_get_status():
-    Login().login(USER, PASSWORD)
-    file = open('./testdata/get_comment/get_comment.json', "r")
+    #Login().login(USER, PASSWORD)
+    file = open('../testdata/get_comment/get_comment.json', "r")
     crud_comment = CrudComment()
     input_data = json.loads(file.read())
     response = crud_comment.get_comment(URL, TOKEN, input_data.get("orderby"),
                                         input_data.get("page"),
                                         input_data.get("per_page"))
     data = json.loads(response.text)
-    print(data)
+    LOGGER.logger().info(f"Response:{response}")
     assert_that(str(data[0])).contains('approved')
 
 

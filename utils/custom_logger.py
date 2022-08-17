@@ -6,7 +6,7 @@ class CustomLogger:
 
     def logger(self, logLevel=logging.DEBUG):
         # Set class/method name from where its called
-        logger_name=inspect.stack()[1][3]
+        logger_name = inspect.stack()[1][3]
         # Create logger
         logger = logging.getLogger(logger_name)
         logger.setLevel(logLevel)

@@ -9,6 +9,7 @@ from helpers.login import Login
 from helpers.idslist import get_id_user_list
 from utils.schema_validator import validator_schema
 import random
+from utils.request_manager import RequestsManager
 load_dotenv()
 URL = os.getenv('BASE_URL')
 TOKEN = os.getenv('ACCESS_TOKEN')
@@ -23,17 +24,13 @@ PASSWORD = os.getenv('PASSWORD')
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Verify if response is 200 when is getting user successfully")
 def test_get_user():
-    Login().login(USER, PASSWORD)
-    file = open('./testdata/get_user/get_user.json', "r")
+    #Login().login(USER, PASSWORD)
+    file = open('../testdata/get_user/get_user.json', "r")
     input_data = json.loads(file.read())
-    crud_user = CrudUser()
-    response = crud_user.get_user(URL, TOKEN, input_data.get("orderby"), input_data.get("page"),
-                                  input_data.get("per_page"))
+    response = RequestsManager.get_instance().send_request("GET", "/wp-json/wp/v2/users?orderby=id&page=1&per_page=8", None)
+    print(response)
     # Successfully response
-    assert_that(response.status_code).is_equal_to(200)
-    # See if data sent is the same
-    data = json.loads(response.text)
-    assert_that(len(data) <= input_data.get("per_page")).is_true()
+    assert_that(response[1]).is_equal_to(200)
 
 
 @pytest.mark.regression

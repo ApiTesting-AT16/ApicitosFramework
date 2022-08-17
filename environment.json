@@ -1,0 +1,13 @@
+{
+    "headers": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY2MDE2NzMxNywiZXhwIjoxODE3ODQ3MzE3fQ.3BJREOpbtnO5morfzt5Dc5jPlD7Fw0Sg7SJBPXSSw8M",
+    "test": {
+        "api-url": "http://localhost/apicitos",
+        "users": {
+            "admin":{
+                "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhcGljaXRvcyIsImlhdCI6MTY2MDE2NzMxNywiZXhwIjoxODE3ODQ3MzE3fQ.3BJREOpbtnO5morfzt5Dc5jPlD7Fw0Sg7SJBPXSSw8M",
+                "username": "apicitos",
+                "password": "1234"
+            }
+        }
+    }
+}
